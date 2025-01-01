@@ -4,9 +4,15 @@ import 'package:portfolio_web/components/hero_image.dart';
 import 'package:portfolio_web/components/navigation_bar.dart';
 import 'package:portfolio_web/components/studioSection.dart';
 
-class PortfolioPage extends StatelessWidget {
+
+class PortfolioPage extends StatefulWidget {
   const PortfolioPage({super.key});
 
+  @override
+  State<PortfolioPage> createState() => _PortfolioPageState();
+}
+
+class _PortfolioPageState extends State<PortfolioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +63,9 @@ class PortfolioPage extends StatelessWidget {
                 },
               ),
               const studioSection(),
+              const SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),

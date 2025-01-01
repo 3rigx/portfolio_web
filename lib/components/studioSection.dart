@@ -1,6 +1,8 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 
+import 'blinking_status.dart';
+
 // ignore: camel_case_types
 class studioSection extends StatelessWidget {
   const studioSection({
@@ -60,7 +62,7 @@ class studioSection extends StatelessWidget {
         OutlinedButton(
           onPressed: () {},
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: Colors.white),
+            side: const BorderSide(color: Colors.black26),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -71,11 +73,7 @@ class studioSection extends StatelessWidget {
           ),
           child: const Row(
             children: [
-              Text(
-                '3rigx',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
+              BlinkingStatusIndicator(),
             ],
           ),
         ),
