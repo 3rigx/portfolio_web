@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web/components/content_section.dart';
 import 'package:portfolio_web/components/hero_image.dart';
+import 'package:portfolio_web/components/lottie_comp.dart';
 import 'package:portfolio_web/components/navigation_bar.dart';
 import 'package:portfolio_web/components/studioSection.dart';
 
+import '../components/animated_text_overlay.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({super.key});
@@ -32,40 +34,51 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   bool isWideScreen = maxWidth > 900;
 
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 40.0),
-                    child: isWideScreen
-                        ? const Stack(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 100),
-                                child: Center(child: ContentSection()),
-                              ), // Background element
-                              Positioned.fill(
-                                child: Align(
-                                  alignment:
-                                      Alignment.center, // Adjust as needed
-                                  child: FractionallySizedBox(
-                                    widthFactor: 0.5, // Adjust width as needed
-                                    child: HeroImage(),
+                      padding: const EdgeInsets.symmetric(vertical: 40.0),
+                      child: isWideScreen
+                          ? const Stack(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 100),
+                                  child: Center(child: ContentSection()),
+                                ), // Background element
+                                Positioned.fill(
+                                  child: Align(
+                                    alignment:
+                                        Alignment.center, // Adjust as needed
+                                    child: FractionallySizedBox(
+                                      widthFactor:
+                                          0.5, // Adjust width as needed
+                                      child: LottieObject(),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          )
-                        : const Column(
-                            children: [
-                              ContentSection(),
-                              SizedBox(height: 48),
-                              HeroImage(),
-                            ],
-                          ),
-                  );
+                              ],
+                            )
+                          : const Stack(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 20),
+                                  child: Center(child: ContentSection()),
+                                ), // Background element
+                                Positioned.fill(
+                                  child: Align(
+                                    alignment:
+                                        Alignment.center, // Adjust as needed
+                                    child: FractionallySizedBox(
+                                      widthFactor:
+                                          0.5, // Adjust width as needed
+                                      child: LottieObject(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ));
                 },
               ),
               const studioSection(),
-              const SizedBox(
-                height: 10,
-              ),
+
+              //const SizedBox(height: 200, child: WaterTextEffectPage()),
             ],
           ),
         ),
