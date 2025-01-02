@@ -1,0 +1,333 @@
+import 'package:flutter/material.dart';
+
+class CaseStudyCard extends StatefulWidget {
+  const CaseStudyCard({super.key});
+
+  @override
+  State<CaseStudyCard> createState() => _CaseStudyCardState();
+}
+
+class _CaseStudyCardState extends State<CaseStudyCard> {
+  // Images for the background animation
+  final List<String> backgroundImages = [
+    'assets/asset1.jpg',
+    'assets/asset2.jpg',
+
+    // Add more image paths as needed
+  ];
+  int currentImageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Start the background animation
+    _startBackgroundAnimation();
+  }
+
+  void _startBackgroundAnimation() {
+    Future.delayed(const Duration(seconds: 5), () {
+      if (mounted) {
+        setState(() {
+          currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+        });
+        _startBackgroundAnimation();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //Size screenSize = MediaQuery.of(context).size;
+    // double screenWidth = screenSize.width;
+    // double screenHeight = screenSize.height;
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16.0),
+        border: Border.all(color: Colors.black),
+      ),
+      child: Column(
+        children: [
+          Flexible(
+            flex: 3,
+            child: Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16.0),
+                  topRight: Radius.circular(16.0),
+                ),
+              ),
+              child: Stack(
+                fit: StackFit.expand, // Added this to make Stack fill container
+                children: [
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    child: Image.asset(
+                      backgroundImages[currentImageIndex],
+                      key: ValueKey<int>(currentImageIndex),
+                      fit: BoxFit.cover, // Changed from fill to cover
+                      width: double.infinity, // Added to ensure full width
+                      height: double.infinity, // Added to ensure full height
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 24,
+                    left: 0, // Added this
+                    right: 0, // Added this
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween, // Added this
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Insights section
+                              const Text(
+                                'INSIGHTS',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+
+                              // Statistics
+                              _buildStatistic('12%',
+                                  'Click rates for\nJob Description and AI writer'),
+                              const SizedBox(height: 16),
+                              _buildStatistic(
+                                  '5%', 'Increase in\nresume building'),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              _buildControlButton('Live View'),
+                              const SizedBox(width: 8),
+                              _buildControlButton('Sound'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(16.0),
+                  bottomRight: Radius.circular(16.0),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'CASE STUDY 02',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: RichText(
+                          text: const TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Empowered 500k Users ',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: 'with AI-Enhanced Resume Builder',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      _buildTag('MOBILE'),
+                      const SizedBox(width: 16),
+                      _buildTag('WEB'),
+                      const SizedBox(width: 16),
+                      _buildTag('500K MAU'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatistic(String percentage, String description) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          percentage,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 48,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          description,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTag(String text) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildControlButton(String text) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: text == 'Sound' ? Colors.white : Colors.black,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+              color: text == 'Sound' ? Colors.black : Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          if (text == 'Sound') ...[
+            const SizedBox(width: 4),
+            Icon(
+              Icons.play_arrow,
+              size: 16,
+              color: text == 'Sound' ? Colors.black : Colors.white,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPhoneMockup() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 24),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.arrow_back, size: 20),
+              const Expanded(
+                child: Text(
+                  'AI Resume Review',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.green.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: const Text(
+                  'PREVIEW',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              const Text(
+                'Your Score',
+                style: TextStyle(fontSize: 16),
+              ),
+              const Spacer(),
+              const Text(
+                '45',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                '/100',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey[600],
+                ),
+              ),
+            ],
+          ),
+          // Add more resume review content as needed
+        ],
+      ),
+    );
+  }
+}

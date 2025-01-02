@@ -6,6 +6,7 @@ import 'package:portfolio_web/components/navigation_bar.dart';
 import 'package:portfolio_web/components/studioSection.dart';
 
 import '../components/animated_text_overlay.dart';
+import '../components/case_sturdy_card.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({super.key});
@@ -77,6 +78,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 },
               ),
               const studioSection(),
+              const SizedBox(
+                height: 10,
+              ),
+
+              Container(
+                height: 886,
+                child: CaseStudyCard(),
+              ),
 
               //const SizedBox(height: 200, child: WaterTextEffectPage()),
             ],
