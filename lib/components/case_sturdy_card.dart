@@ -128,56 +128,74 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                   bottomRight: Radius.circular(16.0),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'CASE STUDY 02',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: RichText(
-                          text: const TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'Empowered 500k Users ',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TextSpan(
-                                text: 'with AI-Enhanced Resume Builder',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 24,
-                                ),
-                              ),
-                            ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                  vertical: 24.0,
+                ),
+                child: Column(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'CASE STUDY 02',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w200,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      _buildTag('MOBILE'),
-                      const SizedBox(width: 16),
-                      _buildTag('WEB'),
-                      const SizedBox(width: 16),
-                      _buildTag('500K MAU'),
-                    ],
-                  ),
-                ],
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: RichText(
+                                text: const TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Empowered 500k Users ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Inter',
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: 'with AI-Enhanced Resume Builder',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 24,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 14),
+                        Row(
+                          children: [
+                            _buildTag('MOBILE'),
+                            const SizedBox(width: 16),
+                            _buildTag('WEB'),
+                            const SizedBox(width: 16),
+                            _buildTag('500K MAU'),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      // crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        _buildViewCaseButton(),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -210,20 +228,26 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
   }
 
   Widget _buildTag(String text) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Text(
-        text,
-        style: const TextStyle(
+    return Row(
+      children: [
+        const Icon(
+          Icons.donut_small_sharp,
           color: Colors.black,
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
+          size: 10,
+          weight: 88,
         ),
-      ),
+        const SizedBox(
+          width: 2,
+        ),
+        Text(
+          text,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
     );
   }
 
@@ -258,75 +282,44 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
     );
   }
 
-  Widget _buildPhoneMockup() {
+  Widget _buildViewCaseButton() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 24),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(24),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Icon(Icons.arrow_back, size: 20),
-              const Expanded(
-                child: Text(
-                  'AI Resume Review',
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: const Text(
-                  'PREVIEW',
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ],
+      child: OutlinedButton(
+        onPressed: () {},
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: Colors.black26),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              const Text(
-                'Your Score',
-                style: TextStyle(fontSize: 16),
-              ),
-              const Spacer(),
-              const Text(
-                '45',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                '/100',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[600],
-                ),
-              ),
-            ],
+          padding: const EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 12,
           ),
-          // Add more resume review content as needed
-        ],
+        ),
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'View Case Study',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(width: 4),
+            Icon(
+              Icons.arrow_outward_sharp,
+              size: 16,
+              color: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }
