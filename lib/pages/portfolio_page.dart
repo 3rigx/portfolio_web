@@ -87,6 +87,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 child: CaseStudyCard(),
               ),
 
+
               //const SizedBox(height: 200, child: WaterTextEffectPage()),
             ],
           ),
