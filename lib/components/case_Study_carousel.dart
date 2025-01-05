@@ -40,6 +40,45 @@ class _CaseStudyCarouselState extends State<CaseStudyCarousel> {
       ],
       'tags': ['AI', 'ENTERPRISE', '1M MAU']
     },
+    {
+      'id': '03',
+      'title': 'AI-Powered Job Matching Platform',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '25%',
+          'description': 'Increase in\nsuccessful placements'
+        },
+        {'percentage': '15%', 'description': 'Reduction in\nhiring time'}
+      ],
+      'tags': ['AI', 'ENTERPRISE', '1M MAU']
+    },
+    {
+      'id': '04',
+      'title': 'AI-Powered Job Matching Platform',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '25%',
+          'description': 'Increase in\nsuccessful placements'
+        },
+        {'percentage': '15%', 'description': 'Reduction in\nhiring time'}
+      ],
+      'tags': ['AI', 'ENTERPRISE', '1M MAU']
+    },
+    {
+      'id': '05',
+      'title': 'AI-Powered Job Matching Platform',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '25%',
+          'description': 'Increase in\nsuccessful placements'
+        },
+        {'percentage': '15%', 'description': 'Reduction in\nhiring time'}
+      ],
+      'tags': ['AI', 'ENTERPRISE', '1M MAU']
+    },
     // Add more case studies as needed
   ];
 

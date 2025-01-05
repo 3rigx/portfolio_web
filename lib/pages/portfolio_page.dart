@@ -221,7 +221,12 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                InfinitDragableSlider(caseStudies: caseStudies)
+                InfinitDragableSlider(
+                  caseStudies: caseStudies,
+                  itemBuilder: (context, index) =>
+                      CaseStudyCard(caseStudy: caseStudies[index]),
+                  itemCount: caseStudies.length,
+                )
 
                 // const SizedBox(
                 //   height: 886,
