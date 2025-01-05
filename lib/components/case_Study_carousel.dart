@@ -13,20 +13,34 @@ class _CaseStudyCarouselState extends State<CaseStudyCarousel> {
   final PageController _pageController = PageController(viewportFraction: 0.85);
   int _currentPage = 0;
 
-  // Sample list of case studies - you can expand this
   final List<Map<String, dynamic>> caseStudies = [
     {
       'id': '01',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
       'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
     },
     {
       'id': '02',
-      'images': ['assets/asset3.jpg', 'assets/asset4.jpg'],
+      'title': 'AI-Powered Job Matching Platform',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '25%',
+          'description': 'Increase in\nsuccessful placements'
+        },
+        {'percentage': '15%', 'description': 'Reduction in\nhiring time'}
+      ],
+      'tags': ['AI', 'ENTERPRISE', '1M MAU']
     },
-    {
-      'id': '03',
-      'images': ['assets/asset5.jpg', 'assets/asset6.jpg'],
-    },
+    // Add more case studies as needed
   ];
 
   @override
@@ -66,9 +80,9 @@ class _CaseStudyCarouselState extends State<CaseStudyCarousel> {
                     ),
                   );
                 },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: CaseStudyCard(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: CaseStudyCard(caseStudy: caseStudies[index]),
                 ),
               );
             },

@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CaseStudyCard extends StatefulWidget {
-  const CaseStudyCard({super.key});
+  final Map<String, dynamic> caseStudy;
+  const CaseStudyCard({super.key, required this.caseStudy});
 
   @override
   State<CaseStudyCard> createState() => _CaseStudyCardState();
 }
 
 class _CaseStudyCardState extends State<CaseStudyCard> {
-  // Images for the background animation
-  final List<String> backgroundImages = [
-    'assets/asset1.jpg',
-    'assets/asset2.jpg',
-
-    // Add more image paths as needed
-  ];
   int currentImageIndex = 0;
 
   @override
@@ -28,7 +22,9 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
     Future.delayed(const Duration(seconds: 5), () {
       if (mounted) {
         setState(() {
-          currentImageIndex = (currentImageIndex + 1) % backgroundImages.length;
+          currentImageIndex =
+              ((currentImageIndex + 1) % widget.caseStudy['images'].length)
+                  .toInt();
         });
         _startBackgroundAnimation();
       }
@@ -37,9 +33,6 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
 
   @override
   Widget build(BuildContext context) {
-    //Size screenSize = MediaQuery.of(context).size;
-    // double screenWidth = screenSize.width;
-    // double screenHeight = screenSize.height;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
@@ -63,7 +56,7 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 500),
                     child: Image.asset(
-                      backgroundImages[currentImageIndex],
+                      widget.caseStudy['images'][currentImageIndex],
                       key: ValueKey<int>(currentImageIndex),
                       fit: BoxFit.cover, // Changed from fill to cover
                       width: double.infinity, // Added to ensure full width
@@ -94,13 +87,25 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                                 ),
                               ),
                               const SizedBox(height: 8),
-
-                              // Statistics
-                              _buildStatistic('12%',
-                                  'Click rates for\nJob Description and AI writer'),
-                              const SizedBox(height: 16),
-                              _buildStatistic(
-                                  '5%', 'Increase in\nresume building'),
+                              ...widget.caseStudy['statistics']
+                                  .map<Widget>(
+                                    (stat) => Column(
+                                      children: [
+                                        _buildStatistic(
+                                          stat['percentage'],
+                                          stat['description'],
+                                        ),
+                                        const SizedBox(height: 16),
+                                      ],
+                                    ),
+                                  )
+                                  .toList(),
+                              // // Statistics
+                              // _buildStatistic('12%',
+                              //     'Click rates for\nJob Description and AI writer'),
+                              // const SizedBox(height: 16),
+                              // _buildStatistic(
+                              //     '5%', 'Increase in\nresume building'),
                             ],
                           ),
                           Row(
@@ -138,9 +143,9 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'CASE STUDY 02',
-                          style: TextStyle(
+                        Text(
+                          'CASE STUDY ${widget.caseStudy['id']}',
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 12,
                             fontWeight: FontWeight.w200,
@@ -150,26 +155,12 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                         Row(
                           children: [
                             Expanded(
-                              child: RichText(
-                                text: const TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Empowered 500k Users ',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Inter',
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: 'with AI-Enhanced Resume Builder',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 24,
-                                      ),
-                                    ),
-                                  ],
+                              child: Text(
+                                widget.caseStudy['title'],
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -178,15 +169,19 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                         const SizedBox(height: 14),
                         Row(
                           children: [
-                            _buildTag('MOBILE'),
-                            const SizedBox(width: 16),
-                            _buildTag('WEB'),
-                            const SizedBox(width: 16),
-                            _buildTag('500K MAU'),
+                            ...widget.caseStudy['tags']
+                                .map(
+                                  (tag) => Padding(
+                                    padding: const EdgeInsets.only(right: 16.0),
+                                    child: _buildTag(tag),
+                                  ),
+                                )
+                                .toList(),
                           ],
                         ),
                       ],
                     ),
+                    const Spacer(),
                     Row(
                       // crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.end,

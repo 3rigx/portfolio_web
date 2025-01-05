@@ -1,11 +1,15 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:portfolio_web/components/content_section.dart';
 import 'package:portfolio_web/components/hero_image.dart';
+import 'package:portfolio_web/components/infinit_dragable_slider.dart';
 import 'package:portfolio_web/components/lottie_comp.dart';
 import 'package:portfolio_web/components/navigation_bar.dart';
 import 'package:portfolio_web/components/studioSection.dart';
 
 import '../components/animated_text_overlay.dart';
+import '../components/case_Study_carousel.dart';
 import '../components/case_sturdy_card.dart';
 
 class PortfolioPage extends StatefulWidget {
@@ -16,80 +20,217 @@ class PortfolioPage extends StatefulWidget {
 }
 
 class _PortfolioPageState extends State<PortfolioPage> {
+  final List<Map<String, dynamic>> caseStudies = [
+    {
+      'id': '01',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+    {
+      'id': '02',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+    {
+      'id': '03',
+      'title': 'AI-Powered Job Matching Platform',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '25%',
+          'description': 'Increase in\nsuccessful placements'
+        },
+        {'percentage': '15%', 'description': 'Reduction in\nhiring time'}
+      ],
+      'tags': ['AI', 'ENTERPRISE', '1M MAU']
+    },
+    {
+      'id': '04',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+    {
+      'id': '05',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+    {
+      'id': '06',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+    {
+      'id': '07',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+    {
+      'id': '08',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+    {
+      'id': '09',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+    {
+      'id': '10',
+      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
+      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'statistics': [
+        {
+          'percentage': '12%',
+          'description': 'Click rates for\nJob Description and AI writer'
+        },
+        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+      ],
+      'tags': ['MOBILE', 'WEB', '500K MAU']
+    },
+
+    // Add more case studies as needed
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 216, 224, 220),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 70),
-          child: Column(
-            children: [
-              // Navigation Bar
-              NavigationBarNew(context),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 70),
+            child: Column(
+              children: [
+                // Navigation Bar
+                NavigationBarNew(context),
 
-              // Main Content
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  double maxWidth = constraints.maxWidth;
-                  bool isWideScreen = maxWidth > 900;
+                // Main Content
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    double maxWidth = constraints.maxWidth;
+                    bool isWideScreen = maxWidth > 900;
 
-                  return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 40.0),
-                      child: isWideScreen
-                          ? const Stack(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 100),
-                                  child: Center(child: ContentSection()),
-                                ), // Background element
-                                Positioned.fill(
-                                  child: Align(
-                                    alignment:
-                                        Alignment.center, // Adjust as needed
-                                    child: FractionallySizedBox(
-                                      widthFactor:
-                                          0.5, // Adjust width as needed
-                                      child: LottieObject(),
+                    return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 40.0),
+                        child: isWideScreen
+                            ? const Stack(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 100),
+                                    child: Center(child: ContentSection()),
+                                  ), // Background element
+                                  Positioned.fill(
+                                    child: Align(
+                                      alignment:
+                                          Alignment.center, // Adjust as needed
+                                      child: FractionallySizedBox(
+                                        widthFactor:
+                                            0.5, // Adjust width as needed
+                                        child: LottieObject(),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            )
-                          : const Stack(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 20),
-                                  child: Center(child: ContentSection()),
-                                ), // Background element
-                                Positioned.fill(
-                                  child: Align(
-                                    alignment:
-                                        Alignment.center, // Adjust as needed
-                                    child: FractionallySizedBox(
-                                      widthFactor:
-                                          0.5, // Adjust width as needed
-                                      child: LottieObject(),
+                                ],
+                              )
+                            : const Stack(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 20),
+                                    child: Center(child: ContentSection()),
+                                  ), // Background element
+                                  Positioned.fill(
+                                    child: Align(
+                                      alignment:
+                                          Alignment.center, // Adjust as needed
+                                      child: FractionallySizedBox(
+                                        widthFactor:
+                                            0.5, // Adjust width as needed
+                                        child: LottieObject(),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ));
-                },
-              ),
-              const studioSection(),
-              const SizedBox(
-                height: 10,
-              ),
+                                ],
+                              ));
+                  },
+                ),
+                const studioSection(),
+                const SizedBox(
+                  height: 10,
+                ),
+                InfinitDragableSlider(caseStudies: caseStudies)
 
-              Container(
-                height: 886,
-                child: CaseStudyCard(),
-              ),
+                // const SizedBox(
+                //   height: 886,
+                //   child: CaseStudyCarousel(),
+                // ),
 
-
-              //const SizedBox(height: 200, child: WaterTextEffectPage()),
-            ],
+                //const SizedBox(height: 200, child: WaterTextEffectPage()),
+              ],
+            ),
           ),
         ),
       ),
