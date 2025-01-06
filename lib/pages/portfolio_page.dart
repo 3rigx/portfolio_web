@@ -225,7 +225,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   caseStudies: caseStudies,
                   itemBuilder: (context, index) =>
                       CaseStudyCard(caseStudy: caseStudies[index]),
-                  itemCount: caseStudies.length,
+                  iteamCount: caseStudies.length,
                 ),
                 const SizedBox(
                   height: 120,

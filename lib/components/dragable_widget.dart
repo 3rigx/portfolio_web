@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 enum SlideDirection { left, right }
@@ -22,19 +24,26 @@ class DragableWidget extends StatefulWidget {
 class _DragableWidgetState extends State<DragableWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController restoreController;
-
-  final _widgetkey = GlobalKey();
+  late Size screenSize;
+  final _widgetKey = GlobalKey();
   Offset startOffset = Offset.zero;
   Offset panOffset = Offset.zero;
 
   Size size = Size.zero;
   double angle = 0;
 
+  bool itWasMadeSlide = false;
+  double get outSizeLimit => size.width * 0.65;
+
   @override
   void initState() {
     restoreController =
         AnimationController(vsync: this, duration: kThemeAnimationDuration)
           ..addListener(restoreAnimationListner);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      screenSize = MediaQuery.of(context).size;
+      getChildSize();
+    });
     super.initState();
   }
 
@@ -50,13 +59,25 @@ class _DragableWidgetState extends State<DragableWidget>
   void onPanUpdate(DragUpdateDetails details) {
     setState(() {
       panOffset = details.globalPosition - startOffset;
-      // angle = panOffset.dx / 100;
+      angle = currentAngle;
     });
   }
 
   void onPanEnd(DragEndDetails details) {
     if (restoreController.isAnimating) {
       return;
+    }
+    final velocityX = details.velocity.pixelsPerSecond.dx;
+    final positionX = currentPosition.dx;
+// Here we made a mistake, look if we slide a bit it called it
+// Now perfect
+    if (velocityX < -1000 || positionX < -outSizeLimit) {
+      itWasMadeSlide = widget.onSlideOut != null;
+      widget.onSlideOut?.call(SlideDirection.left);
+    }
+    if (velocityX > 1000 || positionX > (screenSize.width - outSizeLimit)) {
+      itWasMadeSlide = widget.onSlideOut != null;
+      widget.onSlideOut?.call(SlideDirection.right);
     }
     restoreController.forward();
   }
@@ -65,8 +86,32 @@ class _DragableWidgetState extends State<DragableWidget>
     if (restoreController.isCompleted) {
       restoreController.reset();
       panOffset = Offset.zero;
+      itWasMadeSlide = false;
+      angle = 0;
       setState(() {});
     }
+  }
+
+  Offset get currentPosition {
+    final renderBox =
+        _widgetKey.currentContext?.findRenderObject() as RenderBox?;
+    return renderBox?.localToGlobal(Offset.zero) ?? Offset.zero;
+  }
+
+  double get currentAngle {
+    return currentPosition.dx < 0
+        ? (pi * 0.2) * currentPosition.dx / size.width
+        : currentPosition.dx + size.width > screenSize.width
+            ? (pi * 0.2) *
+                (currentPosition.dx + size.width - screenSize.width) /
+                size.width
+            : 0;
+  }
+
+  void getChildSize() {
+    size =
+        (_widgetKey.currentContext?.findRenderObject() as RenderBox?)?.size ??
+            Size.zero;
   }
 
   @override
@@ -74,13 +119,12 @@ class _DragableWidgetState extends State<DragableWidget>
     restoreController
       ..removeListener(restoreAnimationListner)
       ..dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final child = SizedBox(key: _widgetkey, child: widget.child);
+    final child = SizedBox(key: _widgetKey, child: widget.child);
     if (!widget.isEnableDrag) return child;
 
     return GestureDetector(
@@ -88,11 +132,21 @@ class _DragableWidgetState extends State<DragableWidget>
       onPanUpdate: onPanUpdate,
       onPanEnd: onPanEnd,
       child: AnimatedBuilder(
-          animation: restoreController,
-          builder: (context, child) {
-            final value = 1 - restoreController.value;
-            return Transform.translate(offset: panOffset * value, child: child);
-          }),
+        animation: restoreController,
+        builder: (context, child) {
+          final value = 1 - restoreController.value;
+          return Transform.translate(
+            offset: panOffset * value,
+            child: Transform.rotate(
+              // Make our animation smooth
+              // Now let's chnage the slide
+              angle: angle * (itWasMadeSlide ? 1 : value),
+              child: child,
+            ),
+          );
+        },
+        child: child,
+      ),
     );
   }
 }
