@@ -5,6 +5,7 @@ import 'package:portfolio_web/components/content_section.dart';
 import 'package:portfolio_web/components/hero_image.dart';
 import 'package:portfolio_web/components/infinit_dragable_slider.dart';
 import 'package:portfolio_web/components/lottie_comp.dart';
+import 'package:portfolio_web/components/my_stacks.dart';
 import 'package:portfolio_web/components/navigation_bar.dart';
 import 'package:portfolio_web/components/studioSection.dart';
 
@@ -229,7 +230,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 ),
                 const SizedBox(
                   height: 120,
-                )
+                ),
+                const SizedBox(height: 650, child: MyStacks()),
 
                 // const SizedBox(
                 //   height: 886,
@@ -237,6 +239,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 // ),
 
                 //const SizedBox(height: 200, child: WaterTextEffectPage()),
+                const SizedBox(
+                  height: 120,
+                ),
               ],
             ),
           ),
