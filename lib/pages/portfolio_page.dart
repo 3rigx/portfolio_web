@@ -24,7 +24,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
     {
       'id': '01',
       'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
-      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'images': ['assets/asset2.jpg', 'assets/asset1.jpg'],
       'statistics': [
         {
           'percentage': '12%',
@@ -50,7 +50,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
     {
       'id': '03',
       'title': 'AI-Powered Job Matching Platform',
-      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'images': ['assets/asset2.jpg', 'assets/asset1.jpg'],
       'statistics': [
         {
           'percentage': '25%',
@@ -226,6 +226,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
                   itemBuilder: (context, index) =>
                       CaseStudyCard(caseStudy: caseStudies[index]),
                   itemCount: caseStudies.length,
+                ),
+                const SizedBox(
+                  height: 120,
                 )
 
                 // const SizedBox(

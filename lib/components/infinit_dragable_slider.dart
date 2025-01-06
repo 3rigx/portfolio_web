@@ -25,11 +25,11 @@ class _InfinitDragableSliderState extends State<InfinitDragableSlider> {
   final double defaultAngle180degre = -pi * 0.1;
   Offset getOffset(int index) {
     return {
-        //  0: const Offset(0, 0),
+          0: const Offset(0, 30),
           1: const Offset(-70, 30),
           2: const Offset(70, 30),
         }[index] ??
-        const Offset(0, 0);
+        Offset(0, 0);
   }
 
   double getAngle(int index) {
@@ -53,9 +53,10 @@ class _InfinitDragableSliderState extends State<InfinitDragableSlider> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 800,
+      height: 900,
+      width: 650,
       child: Stack(
-        children: List.generate(3, (int index) {
+        children: List.generate(4, (index) {
           return Transform.translate(
             offset: getOffset(index),
             child: Transform.scale(
