@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'stack_card.dart';
+import '../widgets/stack_card.dart';
 
 class MyStacks extends StatelessWidget {
   const MyStacks({super.key});

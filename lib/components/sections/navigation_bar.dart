@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class NavigationBarNew extends StatelessWidget {
   final BuildContext parentContext;
@@ -7,8 +8,9 @@ class NavigationBarNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final buttonActions = getButtonActions(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,7 +46,7 @@ class NavigationBarNew extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: buttonActions[item],
                         child: Text(
                           item,
                           style: const TextStyle(
@@ -84,5 +86,19 @@ class NavigationBarNew extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Map<String, VoidCallback> getButtonActions(BuildContext context) {
+    return {
+      'experiments': () {
+        context.goNamed('experiments');
+      },
+      'portfolio': () {
+        context.goNamed('home');
+      },
+      'about': () {
+        context.goNamed('about');
+      },
+    };
   }
 }

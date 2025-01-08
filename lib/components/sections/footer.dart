@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_web/components/social_button.dart';
+import 'package:portfolio_web/components/widgets/social_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'lottie/work_together_lottie.dart';
+import '../lottie/work_together_lottie.dart';
 
 class FooterSection extends StatefulWidget {
   const FooterSection({super.key});
@@ -12,8 +12,8 @@ class FooterSection extends StatefulWidget {
 }
 
 class FooterSectionState extends State<FooterSection> {
-  Offset _cursorPosition = const Offset(0, 0);
-  bool _showCursor = false;
+  final Offset _cursorPosition = const Offset(0, 0);
+  final bool _showCursor = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

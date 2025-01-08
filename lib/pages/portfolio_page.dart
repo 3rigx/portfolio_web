@@ -1,18 +1,14 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:portfolio_web/components/content_section.dart';
-import 'package:portfolio_web/components/hero_image.dart';
-import 'package:portfolio_web/components/infinit_dragable_slider.dart';
-import 'package:portfolio_web/components/lottie_comp.dart';
-import 'package:portfolio_web/components/my_stacks.dart';
-import 'package:portfolio_web/components/navigation_bar.dart';
-import 'package:portfolio_web/components/studioSection.dart';
+import 'package:portfolio_web/components/sections/content_section.dart';
+import 'package:portfolio_web/components/sections/infinit_dragable_slider.dart';
+import 'package:portfolio_web/components/lottie/lottie_comp.dart';
+import 'package:portfolio_web/components/sections/my_stacks.dart';
+import 'package:portfolio_web/components/sections/navigation_bar.dart';
+import 'package:portfolio_web/components/widgets/studioSection.dart';
 
-import '../components/animated_text_overlay.dart';
-import '../components/case_Study_carousel.dart';
-import '../components/case_sturdy_card.dart';
-import '../components/footer.dart';
+import '../components/widgets/case_sturdy_card.dart';
+import '../components/sections/footer.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({super.key});

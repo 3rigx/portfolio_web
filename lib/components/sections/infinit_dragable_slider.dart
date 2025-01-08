@@ -1,8 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:portfolio_web/components/case_sturdy_card.dart';
-import 'package:portfolio_web/components/dragable_widget.dart';
+import 'package:portfolio_web/components/widgets/dragable_widget.dart';
 
 class InfinitDragableSlider extends StatefulWidget {
   const InfinitDragableSlider({
