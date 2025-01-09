@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'image_carousel.dart';
+
 class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});
 
@@ -19,6 +21,7 @@ class SkillsSection extends StatelessWidget {
             'I enjoy growing and evolving my thoughts, skills, and approaches...',
             style: Theme.of(context).textTheme.bodyLarge,
           ),
+          const ImageCarousel(),
         ],
       ),
     );

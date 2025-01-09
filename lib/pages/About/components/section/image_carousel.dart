@@ -9,7 +9,7 @@ class ImageCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 32),
-      child: MultiCardSlideshow(),
+      child: RecursiveImageList(),
     );
   }
 }

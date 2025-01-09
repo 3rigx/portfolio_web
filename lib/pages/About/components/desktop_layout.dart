@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../components/sections/footer.dart';
 import '../../../components/sections/navigation_bar.dart';
 import 'section/expirence.dart';
 import 'section/header.dart';
@@ -11,45 +12,50 @@ class DesktopLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
+              NavigationBarNew(context),
               Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   // vertical: 30,
-                  horizontal: 120,
+                  horizontal: screenWidth / 7,
                 ),
                 child: Column(
                   children: [
-                    NavigationBarNew(context),
                     const SizedBox(height: 40),
                     SizedBox(
-                      height: 500,
+                      height: screenHeight - 180,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Expanded(
                             flex: 2,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 HeaderContent(),
-                                const ImageCarousel(),
                               ],
                             ),
                           ),
-                          const SizedBox(width: 32),
-                          Hero(
-                            tag: 'profile',
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.asset(
-                                'pictures/profile.jpg',
-                                fit: BoxFit.cover,
+                          Expanded(
+                            flex: 1,
+                            child: Hero(
+                              tag: 'profile',
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Image.asset(
+                                  'pictures/profile.jpg',
+                                  fit: BoxFit.fill,
+                                  // height: 800,
+                                ),
                               ),
                             ),
                           ),
@@ -61,6 +67,7 @@ class DesktopLayout extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(height: 500, child: FooterSection()),
             ],
           ),
         ),

@@ -1,198 +1,120 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-class MultiCardSlideshow extends StatefulWidget {
-  const MultiCardSlideshow({super.key});
+class RecursiveImageList extends StatefulWidget {
+  const RecursiveImageList({super.key});
 
   @override
-  State<MultiCardSlideshow> createState() => _MultiCardSlideshowState();
+  State<RecursiveImageList> createState() => _RecursiveImageListState();
 }
 
-class _MultiCardSlideshowState extends State<MultiCardSlideshow> {
-  late PageController _pageController;
-  int _currentPage = 0;
-  Timer? _autoSlideTimer;
-
-  // Image list for all cards
+class _RecursiveImageListState extends State<RecursiveImageList>
+    with SingleTickerProviderStateMixin {
+  final ScrollController _scrollController = ScrollController();
   final List<String> allImages =
-      List.generate(21, (index) => 'pictures/image${index + 1}.jpg');
+      List.generate(29, (index) => 'pictures/image${index + 1}.jpg');
+  Timer? _scrollTimer;
 
-  // Divide images into groups of 3 for each slide
-  late List<List<List<String>>> slideGroups;
+  // Define fixed dimensions
+  static const double cardWidth = 180.0;
+  static const double cardHeight = 120.0;
+  static const double cardSpacing = 120.0;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(
-      viewportFraction: 0.8, // This creates the peek effect
-      initialPage: 1000, // Start at a large number for "infinite" scroll
-    );
-    _organizeSlideGroups();
-    _startAutoSlide();
+    _startContinuousScroll();
   }
 
-  void _startAutoSlide() {
-    _autoSlideTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (_pageController.hasClients) {
-        _pageController.nextPage(
-          duration: const Duration(milliseconds: 800),
-          curve: Curves.easeInOut,
-        );
+  void _startContinuousScroll() {
+    _scrollTimer = Timer.periodic(const Duration(milliseconds: 20), (timer) {
+      if (_scrollController.hasClients) {
+        final double currentPosition = _scrollController.offset;
+        final double maxScroll = _scrollController.position.maxScrollExtent;
+
+        if (currentPosition >= maxScroll - 1) {
+          _scrollController.jumpTo(0);
+        } else {
+          _scrollController.jumpTo(currentPosition + 1);
+        }
       }
     });
   }
 
-  void _organizeSlideGroups() {
-    slideGroups = [];
-    int totalImages = allImages.length;
-    int imagesPerCard = 7;
-
-    for (int i = 0; i < totalImages; i += 3) {
-      if (i + 2 < totalImages) {
-        List<List<String>> slideCards = [];
-
-        for (int cardIndex = 0; cardIndex < 3; cardIndex++) {
-          int startIndex = (i + (cardIndex * imagesPerCard)) % totalImages;
-          List<String> cardImages = [];
-
-          for (int imageIndex = 0; imageIndex < imagesPerCard; imageIndex++) {
-            int currentIndex = (startIndex + imageIndex) % totalImages;
-            cardImages.add(allImages[currentIndex]);
-          }
-
-          slideCards.add(cardImages);
-        }
-
-        slideGroups.add(slideCards);
-      }
-    }
-  }
-
   @override
   void dispose() {
-    _pageController.dispose();
-    _autoSlideTimer?.cancel();
+    _scrollTimer?.cancel();
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  List<String> _getImagesForCard(int index) {
+    const int imagesPerCard = 7;
+    List<String> cardImages = [];
+
+    for (int i = 0; i < imagesPerCard; i++) {
+      int imageIndex = (index * imagesPerCard + i) % allImages.length;
+      cardImages.add(allImages[imageIndex]);
+    }
+
+    return cardImages;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 500,
-          child: PageView.builder(
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() {
-                _currentPage = index;
-              });
-            },
-            itemBuilder: (context, slideIndex) {
-              // Use modulo to wrap around the slideGroups
-              final actualIndex = slideIndex % slideGroups.length;
-              return AnimatedBuilder(
-                animation: _pageController,
-                builder: (context, child) {
-                  double value = 1.0;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final int numberOfSets =
+        (screenWidth / (cardWidth + cardSpacing)).ceil() + 2;
+    const int totalCards = 10;
 
-                  // Calculate the sliding value for animation
-                  if (_pageController.position.haveDimensions) {
-                    value = _pageController.page! - slideIndex;
-                    value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
-                  }
-
-                  return Center(
-                    child: SizedBox(
-                      height: Curves.easeOut.transform(value) * 500,
-                      child: child,
-                    ),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List.generate(
-                        3,
-                        (cardIndex) => Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 4.0),
-                            child: ImageCard(
-                              images: slideGroups[actualIndex][cardIndex],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-        // Custom carousel indicators
-        SizedBox(
-          height: 50,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              slideGroups.length,
-              (index) => GestureDetector(
-                onTap: () {
-                  _pageController.animateToPage(
-                    _currentPage - (_currentPage % slideGroups.length) + index,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                },
-                child: Container(
-                  width: 12.0,
-                  height: 12.0,
-                  margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blue.withOpacity(
-                      _currentPage % slideGroups.length == index ? 0.9 : 0.4,
-                    ),
-                  ),
-                ),
+    return Container(
+      height: cardHeight,
+      child: ListView.builder(
+        controller: _scrollController,
+        scrollDirection: Axis.horizontal,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: totalCards * numberOfSets,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: cardSpacing / 2),
+            child: SizedBox(
+              width: cardWidth,
+              height: cardHeight,
+              child: TransitionImageCard(
+                images: _getImagesForCard(index % totalCards),
               ),
             ),
-          ),
-        ),
-      ],
+          );
+        },
+      ),
     );
   }
 }
 
-class ImageCard extends StatefulWidget {
+class TransitionImageCard extends StatefulWidget {
   final List<String> images;
 
-  const ImageCard({
+  const TransitionImageCard({
     super.key,
     required this.images,
   });
 
   @override
-  State<ImageCard> createState() => _ImageCardState();
+  State<TransitionImageCard> createState() => _TransitionImageCardState();
 }
 
-class _ImageCardState extends State<ImageCard> {
+class _TransitionImageCardState extends State<TransitionImageCard> {
   late Timer _timer;
   int _currentImageIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _startImageRotation();
+    _startImageTransition();
   }
 
-  void _startImageRotation() {
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+  void _startImageTransition() {
+    _timer = Timer.periodic(const Duration(seconds: 8), (timer) {
       if (mounted) {
         setState(() {
           _currentImageIndex = (_currentImageIndex + 1) % widget.images.length;
@@ -211,12 +133,12 @@ class _ImageCardState extends State<ImageCard> {
   Widget build(BuildContext context) {
     return Card(
       elevation: 8,
+      margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      child: Container(
-        height: 400,
-        padding: const EdgeInsets.all(8),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           transitionBuilder: (Widget child, Animation<double> animation) {
@@ -225,13 +147,12 @@ class _ImageCardState extends State<ImageCard> {
               child: child,
             );
           },
-          child: ClipRRect(
+          child: Image.asset(
+            widget.images[_currentImageIndex],
             key: ValueKey<int>(_currentImageIndex),
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              widget.images[_currentImageIndex],
-              fit: BoxFit.cover,
-            ),
+            fit: BoxFit.fill,
+            width: double.infinity,
+            height: double.infinity,
           ),
         ),
       ),

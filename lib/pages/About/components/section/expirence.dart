@@ -39,8 +39,7 @@ class _ExperienceItem extends StatelessWidget {
   final String duration;
   final String description;
 
-  const _ExperienceItem({super.key, 
-    required this.company,
+  const _ExperienceItem({required this.company,
     required this.role,
     required this.duration,
     required this.description,
