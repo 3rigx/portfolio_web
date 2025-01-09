@@ -28,40 +28,35 @@ class DesktopLayout extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const SizedBox(height: 40),
-                    SizedBox(
-                      height: screenHeight - 180,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Expanded(
-                            flex: 2,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                HeaderContent(),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Hero(
-                              tag: 'profile',
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(16),
-                                child: Image.asset(
-                                  'pictures/profile.jpg',
-                                  fit: BoxFit.fill,
-                                  // height: 800,
-                                ),
+                    const SizedBox(height: 16),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Expanded(
+                          flex: 2,
+                          child: HeaderContent(),
+                        ),
+                        const SizedBox(
+                          width: 60,
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Hero(
+                            tag: 'profile',
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.asset(
+                                'pictures/profile.jpg',
+                                fit: BoxFit.fill,
+                                // height: 800,
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+                    const SizedBox(height: 50),
                     const ExperienceSection(),
                     const SkillsSection(),
                   ],

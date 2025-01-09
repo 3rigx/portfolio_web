@@ -9,17 +9,58 @@ class HeaderContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // Professional Title
         Text(
-          "IT Professional,\nSpecializing in Software\nDevelopment and Consulting",
+          "IT Professional, Specializing in Software Development and Consulting",
           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: 60,
+                //   color: Theme.of(context).colorScheme.primary,
+                height: 1.2,
               ),
         ),
-        const SizedBox(height: 40),
-        Text(
-          "I'm Greendly, a Software Developer from Nigeria with 5+ years of experience building and delivering high-performance mobile apps and scalable web applications. I've helped  achieve [quantifiable results, e.g., X% increase in efficiency, Y% reduction in costs, etc.] through my expertise in [mention specific technologies/domains]. I enjoy collaborating on challenging projects and finding creative solutions to complex technical problems.",
-          style: Theme.of(context).textTheme.bodyLarge,
+
+        const SizedBox(height: 20),
+
+        // Biography
+        Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(12),
+            //  borderRadius: BorderRadius.circular(12),
+          ),
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            children: [
+              Text(
+                "I'm Greendly, a Software Developer from Nigeria with over 5 years of experience "
+                "creating high-performance mobile apps and scalable web applications. My work has "
+                "driven measurable results, such as a 20% increase in sales efficiency through a "
+                "Smart CRM application and real-time vote aggregation for election analytics using "
+                "technologies like Flutter, React, SQL Server, and Tableau.",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      //  fontWeight: FontWeight.w100,
+                      height: 1.6,
+                      letterSpacing: 0.5,
+                      fontSize: 16,
+                    ),
+                textAlign: TextAlign.justify,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'I thrive on collaborating on challenging projects, leveraging my expertise '
+                'to deliver innovative solutions to complex technical problems.',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  height: 1.5,
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ],
+          ),
         ),
       ],
     );

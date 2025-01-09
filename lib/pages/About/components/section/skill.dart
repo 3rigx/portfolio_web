@@ -21,7 +21,7 @@ class SkillsSection extends StatelessWidget {
             'I enjoy growing and evolving my thoughts, skills, and approaches...',
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          const ImageCarousel(),
+         
         ],
       ),
     );
