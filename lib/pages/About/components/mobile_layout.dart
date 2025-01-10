@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'section/expirence.dart';
-import 'section/header.dart';
-import 'section/image_carousel.dart';
-import 'section/skill.dart';
 
 class MobileLayout extends StatelessWidget {
   const MobileLayout({super.key});
@@ -11,31 +7,21 @@ class MobileLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                Hero(
-                  tag: 'profile',
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      'pictures/profile.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                const HeaderContent(),
-              ],
+      child: Container(
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width,
+          minHeight: MediaQuery.of(context).size.height,
+        ),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: const Column(
+                children: [],
+              ),
             ),
-          ),
-          const ExperienceSection(),
-          const SkillsSection(),
-          const ImageCarousel(),
-        ],
+          ],
+        ),
       ),
     );
   }

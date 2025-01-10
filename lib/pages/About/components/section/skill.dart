@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'image_carousel.dart';
 
 class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});

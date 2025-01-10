@@ -12,7 +12,7 @@ class ExperienceSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -24,7 +24,7 @@ class ExperienceSection extends StatelessWidget {
               const Text(
                 "I enjoy leveraging my technical expertise and creative problem-solving skills to develop innovative solutions that address complex challenges. I thrive in collaborative, forward-thinking environments that encourage continuous learning and value impactful, user-centered development.",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13,
                   height: 1.5,
                 ),
                 textAlign: TextAlign.justify,
@@ -33,7 +33,7 @@ class ExperienceSection extends StatelessWidget {
               const Text(
                 "My technical journey spans various disciplines, including mobile and web development, data analytics, CRM systems, and e-commerce solutions. I am proficient in tools and technologies such as C#, Flutter, React, SQL Server, Tableau, Firebase, and WordPress. Beyond coding, I have a flair for creative design with Adobe Photoshop and a keen eye for streamlining processes through automation and collaboration.",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13,
                   height: 1.5,
                 ),
                 textAlign: TextAlign.justify,
@@ -42,7 +42,7 @@ class ExperienceSection extends StatelessWidget {
               const Text(
                 "Outside of work, I’m passionate about motorsports like Formula 1 and Football. I enjoy gaming with favorites like Fortnite and FC25. My adventurous side thrives in outdoor activities such as go-karting, archery, kayaking, Paintball, lazer tag, swimming, golf, and biking through scenic trails. Fitness is an integral part of my life, and I find fulfillment in gym sessions that keep me energized and focused.",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13,
                   height: 1.5,
                 ),
                 textAlign: TextAlign.justify,
@@ -56,7 +56,7 @@ class ExperienceSection extends StatelessWidget {
           width: 20,
         ),
         Expanded(
-          flex: 1,
+          flex: 2,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -80,7 +80,7 @@ class ExperienceSection extends StatelessWidget {
                 role: 'Developer',
                 duration: 'Abuja, Nigeria (Aug 2022 – Jan 2024)',
                 descriptions: [
-                  'Part of a team responsible for developing a Smart CRM application',
+                  'Part of a team responsible for developing a Smart CRM application.',
                   'Lead Engineer in development of a real-time election analytics app for vote aggregation for Private Sector organizations.'
                 ],
               ),
@@ -110,7 +110,7 @@ class ExperienceSection extends StatelessWidget {
           width: 20,
         ),
         Expanded(
-          flex: 1,
+          flex: 2,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -121,18 +121,40 @@ class ExperienceSection extends StatelessWidget {
               const SizedBox(height: 16),
               const _EducationItem(
                 institution: 'Ambrose Alli University, Ekpoma, Nigeria',
-                degree: 'Bachelor of Science in Computer Science',
+                degree: 'B.Des in Computer Science',
                 awards: [
-                  'Second Class Upper Division',
+                  'Second Class Upper Division.',
                   "Dean's Recognition Award for representing the university at the FSI/NACOS hackathon in 2021.",
                   "Vice Chancellor's Commendation for achieving 1st runner-up in a national computer science hackathon."
                 ],
               ),
-              const _ExperienceItem(
-                company: 'Opera National De Paris',
-                role: 'Intern',
-                duration: '2018',
-                descriptions: [],
+              const SizedBox(
+                height: 16,
+              ),
+              const _EducationItem(
+                institution: 'Complete Computers & Technology',
+                degree: 'Diploma in Software Engineering',
+                awards: ['Second Class Upper Division.'],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () {},
+                child: const Card(
+                  color: Colors.black,
+                  elevation: 1,
+                  child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+                      child: Text(
+                        'Resume',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                      )),
+                ),
               ),
             ],
           ),
@@ -162,16 +184,36 @@ class _ExperienceItem extends StatelessWidget {
       children: [
         Text(
           company,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         Text(
           '$role • $duration',
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+              ),
         ),
-        ...descriptions.map((description) => Text(
-              description,
-              style: Theme.of(context).textTheme.bodyMedium,
-            )),
+        const SizedBox(
+          height: 12,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: descriptions
+              .map((description) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      description,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: 13,
+                            height: 1.5,
+                          ),
+                    ),
+                  ))
+              .toList(),
+        ),
       ],
     );
   }
@@ -196,16 +238,36 @@ class _EducationItem extends StatelessWidget {
       children: [
         Text(
           institution,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
         ),
         Text(
           degree,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontSize: 13,
+              ),
         ),
-        ...awards.map((description) => Text(
-              description,
-              style: Theme.of(context).textTheme.bodyMedium,
-            )),
+        const SizedBox(
+          height: 12,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: awards
+              .map((award) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      award,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: 13,
+                            // fontWeight: FontWeight.bold,
+                            height: 1.5,
+                          ),
+                    ),
+                  ))
+              .toList(),
+        ),
       ],
     );
   }

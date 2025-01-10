@@ -12,8 +12,6 @@ class FooterSection extends StatefulWidget {
 }
 
 class FooterSectionState extends State<FooterSection> {
-  final Offset _cursorPosition = const Offset(0, 0);
-  final bool _showCursor = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

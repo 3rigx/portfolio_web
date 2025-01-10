@@ -15,6 +15,7 @@ class BuildToolCardState extends State<BuildToolCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  // ignore: unused_field
   bool _isHovered = false;
 
   @override

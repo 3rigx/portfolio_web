@@ -27,7 +27,7 @@ class _RecursiveImageListState extends State<RecursiveImageList>
   }
 
   void _startContinuousScroll() {
-    _scrollTimer = Timer.periodic(const Duration(milliseconds: 20), (timer) {
+    _scrollTimer = Timer.periodic(const Duration(milliseconds: 15), (timer) {
       if (_scrollController.hasClients) {
         final double currentPosition = _scrollController.offset;
         final double maxScroll = _scrollController.position.maxScrollExtent;
@@ -61,31 +61,70 @@ class _RecursiveImageListState extends State<RecursiveImageList>
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final int numberOfSets =
         (screenWidth / (cardWidth + cardSpacing)).ceil() + 2;
     const int totalCards = 10;
 
-    return Container(
+    return SizedBox(
       height: cardHeight,
-      child: ListView.builder(
-        controller: _scrollController,
-        scrollDirection: Axis.horizontal,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: totalCards * numberOfSets,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: cardSpacing / 2),
-            child: SizedBox(
-              width: cardWidth,
-              height: cardHeight,
-              child: TransitionImageCard(
-                images: _getImagesForCard(index % totalCards),
+      child: Stack(
+        children: [
+          ListView.builder(
+            controller: _scrollController,
+            scrollDirection: Axis.horizontal,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: totalCards * numberOfSets,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: cardSpacing / 10),
+                child: SizedBox(
+                  width: cardWidth,
+                  height: cardHeight,
+                  child: TransitionImageCard(
+                    images: _getImagesForCard(index % totalCards),
+                  ),
+                ),
+              );
+            },
+          ),
+          Positioned.fill(
+              child: IgnorePointer(
+            child: ShaderMask(
+              shaderCallback: (Rect bounds) {
+                return LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Colors.white.withOpacity(0),
+                    Colors.white70,
+                    Colors.white70,
+                    Colors.white.withOpacity(0),
+                  ],
+                  stops: const [0.0, 0.15, 0.85, 1.0],
+                ).createShader(bounds);
+              },
+              blendMode: BlendMode.dstOut,
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Colors.white70,
+                      Colors.transparent,
+                      Colors.transparent,
+                      Colors.white70,
+                    ],
+                  ),
+                ),
               ),
             ),
-          );
-        },
+          )),
+        ],
       ),
     );
   }
@@ -131,28 +170,31 @@ class _TransitionImageCardState extends State<TransitionImageCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 8,
-      margin: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 500),
-          transitionBuilder: (Widget child, Animation<double> animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-          child: Image.asset(
-            widget.images[_currentImageIndex],
-            key: ValueKey<int>(_currentImageIndex),
-            fit: BoxFit.fill,
-            width: double.infinity,
-            height: double.infinity,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 8,
+        margin: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            child: Image.asset(
+              widget.images[_currentImageIndex],
+              key: ValueKey<int>(_currentImageIndex),
+              fit: BoxFit.fill,
+              width: double.infinity,
+              height: double.infinity,
+            ),
           ),
         ),
       ),
