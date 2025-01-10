@@ -106,7 +106,9 @@ class ExperienceSection extends StatelessWidget {
             ],
           ),
         ),
-        const Spacer(),
+        const SizedBox(
+          width: 20,
+        ),
         Expanded(
           flex: 1,
           child: Column(
@@ -120,7 +122,11 @@ class ExperienceSection extends StatelessWidget {
               const _EducationItem(
                 institution: 'Ambrose Alli University, Ekpoma, Nigeria',
                 degree: 'Bachelor of Science in Computer Science',
-                awards: '',
+                awards: [
+                  'Second Class Upper Division',
+                  "Dean's Recognition Award for representing the university at the FSI/NACOS hackathon in 2021.",
+                  "Vice Chancellor's Commendation for achieving 1st runner-up in a national computer science hackathon."
+                ],
               ),
               const _ExperienceItem(
                 company: 'Opera National De Paris',
@@ -175,7 +181,7 @@ class _EducationItem extends StatelessWidget {
   final String institution;
   final String degree;
 
-  final String awards;
+  final List<String> awards;
 
   const _EducationItem({
     required this.institution,
@@ -196,10 +202,10 @@ class _EducationItem extends StatelessWidget {
           degree,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        Text(
-          awards,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
+        ...awards.map((description) => Text(
+              description,
+              style: Theme.of(context).textTheme.bodyMedium,
+            )),
       ],
     );
   }

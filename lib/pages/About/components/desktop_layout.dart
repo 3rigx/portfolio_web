@@ -58,7 +58,6 @@ class DesktopLayout extends StatelessWidget {
                     ),
                     const SizedBox(height: 50),
                     const ExperienceSection(),
-                    const SkillsSection(),
                   ],
                 ),
               ),
