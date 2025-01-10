@@ -4,6 +4,7 @@ import '../../../components/sections/footer.dart';
 import '../../../components/sections/navigation_bar.dart';
 import 'section/expirence.dart';
 import 'section/header.dart';
+import 'section/testimonials.dart';
 
 class DesktopLayout extends StatelessWidget {
   const DesktopLayout({super.key});
@@ -58,6 +59,10 @@ class DesktopLayout extends StatelessWidget {
                   ),
                   const SizedBox(height: 50),
                   const ExperienceSection(),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const TestimonialsAndBrands(),
                 ],
               ),
             ),
