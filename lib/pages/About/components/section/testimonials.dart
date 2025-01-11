@@ -61,79 +61,99 @@ class _TestimonialsAndBrandsState extends State<TestimonialsAndBrands> {
   ];
 
   final List<String> brands = [
-    'Deimos',
-    'Modus Create',
-    'Bitsika',
-    'Microsoft',
-    'AKQA',
-    'Cloudinary',
-    'Cloudinary',
+    'Aso Savings & Loans',
+    'Daily Trust',
+    'Leadership Newspaper',
+    'Nutrition Society of Nigeria',
+    'Softsmart Business Solutions',
+    'Smart Energy',
+    'UniqGlow',
+    'Da Kulture Models',
+    'Tripple Hands',
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Testimonials From Peers & Coworkers',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 44.0, vertical: 20),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 26),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Testimonials From Peers & Coworkers',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Here are a few kind words people have to say about collaborating and solving problems with me.',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 16,
+                  const SizedBox(height: 8),
+                  Text(
+                    'Here are a few kind words people have to say about collaborating and solving problems with me.',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w100,
+                        height: 1.6,
+                        letterSpacing: 0.5,
+                        color: Colors.black),
                   ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 300,
-            child: AutoScrollingList(
-              itemCount: testimonials.length,
-              rightToLeft: true,
-              itemBuilder: (context, index) {
-                return TestimonialCard(testimonial: testimonials[index]);
-              },
-            ),
-          ),
-          const SizedBox(height: 48),
-          const Padding(
-            padding: EdgeInsets.all(24.0),
-            child: Text(
-              'Some brands I\'ve worked with...',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+                ],
               ),
             ),
-          ),
-          SizedBox(
-            height: 80,
-            child: AutoScrollingList(
-              itemCount: brands.length,
-              rightToLeft: false,
-              itemBuilder: (context, index) {
-                return BrandLogo(name: brands[index]);
-              },
+            SizedBox(
+              height: 300,
+              child: AutoScrollingList(
+                scrollSpeed: 3.0,
+                itemCount: testimonials.length,
+                rightToLeft: true,
+                itemBuilder: (context, index) {
+                  return TestimonialCard(testimonial: testimonials[index]);
+                },
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 48),
+            const Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Text(
+                'Some brands I\'ve worked with...',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 58,
+              child: AutoScrollingList(
+                scrollSpeed: 3.5,
+                itemCount: brands.length,
+                rightToLeft: false,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    child: BrandLogo(name: brands[index]),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -143,12 +163,14 @@ class AutoScrollingList extends StatefulWidget {
   final int itemCount;
   final bool rightToLeft;
   final Widget Function(BuildContext, int) itemBuilder;
+  final double scrollSpeed;
 
   const AutoScrollingList({
     super.key,
     required this.itemCount,
     required this.rightToLeft,
     required this.itemBuilder,
+    this.scrollSpeed = 2.0,
   });
 
   @override
@@ -158,6 +180,7 @@ class AutoScrollingList extends StatefulWidget {
 class _AutoScrollingListState extends State<AutoScrollingList> {
   late ScrollController _scrollController;
   late double _maxScrollExtent;
+  bool _isScrolling = true;
 
   @override
   void initState() {
@@ -169,48 +192,63 @@ class _AutoScrollingListState extends State<AutoScrollingList> {
   }
 
   void _startScrolling() async {
-    _maxScrollExtent = _scrollController.position.maxScrollExtent;
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+    while (_isScrolling) {
       if (!mounted) return;
 
-      if (widget.rightToLeft) {
-        if (_scrollController.offset >= _maxScrollExtent) {
-          _scrollController.jumpTo(0);
-        } else {
-          _scrollController.animateTo(
-            _scrollController.offset + 1,
-            duration: const Duration(milliseconds: 50),
+      if (_scrollController.hasClients) {
+        _maxScrollExtent = _scrollController.position.maxScrollExtent;
+
+        if (widget.rightToLeft) {
+          double nextPosition = _scrollController.offset + widget.scrollSpeed;
+          await _scrollController.animateTo(
+            nextPosition,
+            duration: const Duration(milliseconds: 16),
             curve: Curves.linear,
           );
-        }
-      } else {
-        if (_scrollController.offset <= 0) {
-          _scrollController.jumpTo(_maxScrollExtent);
+
+          // If we're close to the end, jump back by the width of the visible items
+          if (nextPosition >= _maxScrollExtent - 50) {
+            final jumpTarget = nextPosition - (_maxScrollExtent / 2);
+            _scrollController.jumpTo(jumpTarget);
+          }
         } else {
-          _scrollController.animateTo(
-            _scrollController.offset - 1,
-            duration: const Duration(milliseconds: 50),
+          double nextPosition = _scrollController.offset - widget.scrollSpeed;
+          await _scrollController.animateTo(
+            nextPosition,
+            duration: const Duration(milliseconds: 16),
             curve: Curves.linear,
           );
+
+          // If we're close to the start, jump forward by the width of the visible items
+          if (nextPosition <= 50) {
+            final jumpTarget = nextPosition + (_maxScrollExtent / 2);
+            _scrollController.jumpTo(jumpTarget);
+          }
         }
       }
+
+      await Future.delayed(const Duration(milliseconds: 16));
     }
   }
 
   @override
   void dispose() {
+    _isScrolling = false;
     _scrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // Display three sets of items to create the illusion of infinite scrolling
     return ListView.builder(
       controller: _scrollController,
       scrollDirection: Axis.horizontal,
-      itemCount: widget.itemCount,
-      itemBuilder: widget.itemBuilder,
+      itemCount: widget.itemCount * 3, // Triple the items
+      itemBuilder: (context, index) {
+        // Use modulo to repeat the items
+        return widget.itemBuilder(context, index % widget.itemCount);
+      },
     );
   }
 }
@@ -242,7 +280,7 @@ class TestimonialCard extends StatelessWidget {
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -251,7 +289,7 @@ class TestimonialCard extends StatelessWidget {
           Text(
             testimonial.text,
             style: const TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 16,
             ),
           ),
@@ -259,14 +297,14 @@ class TestimonialCard extends StatelessWidget {
           Text(
             testimonial.author,
             style: const TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
             testimonial.role,
             style: const TextStyle(
-              color: Colors.white70,
+              color: Colors.black,
               fontSize: 12,
             ),
           ),
@@ -286,22 +324,40 @@ class BrandLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 160,
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: Colors.grey[800],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Center(
-        child: Text(
-          name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+    return Stack(
+      children: [
+        Transform.translate(
+          offset: const Offset(5, 5),
+          child: Container(
+            width: 240,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4),
+            ),
           ),
         ),
-      ),
+        Material(
+          elevation: 3,
+          borderRadius: BorderRadius.circular(4),
+          child: Container(
+            width: 240,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Center(
+              child: Text(
+                name,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -62,10 +62,10 @@ class DesktopLayout extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  const TestimonialsAndBrands(),
                 ],
               ),
             ),
+            const TestimonialsAndBrands(),
             const SizedBox(height: 500, child: FooterSection()),
           ],
         ),
