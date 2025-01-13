@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/app_theme.dart';
+
 class CaseStudyCard extends StatefulWidget {
   final Map<String, dynamic> caseStudy;
   const CaseStudyCard({super.key, required this.caseStudy});
@@ -34,10 +36,7 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.0),
-        border: Border.all(color: Colors.black),
-      ),
+      decoration: AppTheme.glowingContainer,
       child: Column(
         children: [
           Flexible(
@@ -81,7 +80,6 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                               const Text(
                                 'INSIGHTS',
                                 style: TextStyle(
-                                  color: Colors.white,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -127,7 +125,7 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
             flex: 1,
             child: Container(
               decoration: const BoxDecoration(
-                color: Colors.white,
+                //  color: Colors.white,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(16.0),
                   bottomRight: Radius.circular(16.0),
@@ -146,7 +144,6 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                         Text(
                           'CASE STUDY ${widget.caseStudy['id']}',
                           style: const TextStyle(
-                            color: Colors.black,
                             fontSize: 12,
                             fontWeight: FontWeight.w200,
                           ),
@@ -158,7 +155,6 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                               child: Text(
                                 widget.caseStudy['title'],
                                 style: const TextStyle(
-                                  color: Colors.black,
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -206,7 +202,6 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
         Text(
           percentage,
           style: const TextStyle(
-            color: Colors.white,
             fontSize: 48,
             fontWeight: FontWeight.bold,
           ),
@@ -214,7 +209,6 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
         Text(
           description,
           style: const TextStyle(
-            color: Colors.white,
             fontSize: 16,
           ),
         ),
@@ -227,7 +221,7 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
       children: [
         const Icon(
           Icons.donut_small_sharp,
-          color: Colors.black,
+          // color: Colors.black,
           size: 10,
           weight: 88,
         ),
@@ -237,7 +231,7 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
         Text(
           text,
           style: const TextStyle(
-            color: Colors.black,
+            // color: Colors.black,
             fontSize: 12,
             fontWeight: FontWeight.w500,
           ),
@@ -302,7 +296,6 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
             Text(
               'View Case Study',
               style: TextStyle(
-                color: Colors.white,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
@@ -311,7 +304,6 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
             Icon(
               Icons.arrow_outward_sharp,
               size: 16,
-              color: Colors.white,
             ),
           ],
         ),

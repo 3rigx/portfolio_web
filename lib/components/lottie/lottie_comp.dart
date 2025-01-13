@@ -16,13 +16,12 @@ class _LottieObjectState extends State<LottieObject> {
         'https://lottie.host/35fef9ef-5560-41dd-a79e-26b268d01a5d/E4x3M0F8do.json',
         fit: BoxFit.cover,
         options: LottieOptions(
-          enableMergePaths: true,
-        ),
+            enableMergePaths: true, enableApplyingOpacityToLayers: true),
         delegates: LottieDelegates(
           values: [
             ValueDelegate.opacity(
               ['**'],
-              value: 40,
+              value: 30,
             ),
           ],
         ),

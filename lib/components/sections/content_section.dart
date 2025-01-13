@@ -5,42 +5,40 @@ class ContentSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Greendly Osa Guosadia',
             style: TextStyle(
-              fontSize: 130,
+              fontSize: 120,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              //   color: Colors.white,
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           Row(
             children: [
               Flexible(
                 flex: 1,
                 child: Text(
                   'is A passionate cross-platform mobile and web developer dedicated to creating engaging and user-friendly applications.',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black54,
-                    height: 1.5,
-                  ),
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+
+                        //   color: Theme.of(context).colorScheme.primary,
+                        height: 1.2,
+                      ),
                   softWrap: true,
                 ),
               ),
-              Flexible(flex: 2, child: SizedBox()),
+              const Flexible(flex: 2, child: SizedBox()),
             ],
           ),
-  
         ],
       ),
     );
   }
 }
-
-

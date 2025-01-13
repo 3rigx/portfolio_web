@@ -30,12 +30,12 @@ class SocialButtonState extends State<SocialButton> {
           decoration: BoxDecoration(
             border: Border.all(color: Colors.black),
             borderRadius: BorderRadius.circular(20),
-            color: _isHovered ? Colors.black : Colors.white,
+            color: _isHovered ? Colors.white : Colors.black,
           ),
           child: Text(
             widget.text,
             style: TextStyle(
-              color: _isHovered ? Colors.white : Colors.black,
+              color: _isHovered ? Colors.black : Colors.white,
               fontSize: 6,
               fontWeight: FontWeight.bold,
             ),

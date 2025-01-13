@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web/components/widgets/hoverable_card.dart';
+
+import '../../theme/app_theme.dart';
 
 class BlinkingStatusIndicator extends StatefulWidget {
   final String text;
@@ -38,37 +41,39 @@ class _BlinkingStatusIndicatorState extends State<BlinkingStatusIndicator>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        // color: Colors.black,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AnimatedBuilder(
-            animation: _opacityAnimation,
-            builder: (context, child) {
-              return Container(
-                width: widget.dotSize,
-                height: widget.dotSize,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: widget.dotColor.withOpacity(_opacityAnimation.value),
+    return HoverableCard(
+      child: Container(
+        // padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: AppTheme.glowingContainer,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedBuilder(
+                animation: _opacityAnimation,
+                builder: (context, child) {
+                  return Container(
+                    width: widget.dotSize,
+                    height: widget.dotSize,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color:
+                          widget.dotColor.withOpacity(_opacityAnimation.value),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(width: 8),
+              Text(
+                widget.text,
+                style: const TextStyle(
+                  fontSize: 14,
                 ),
-              );
-            },
+              ),
+            ],
           ),
-          const SizedBox(width: 8),
-          Text(
-            widget.text,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 14,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

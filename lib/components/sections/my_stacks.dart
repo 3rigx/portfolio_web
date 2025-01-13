@@ -10,23 +10,23 @@ class MyStacks extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'My Stacks',
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold,
-            color: Colors.black54,
-          ),
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(),
+
+          // TextStyle(
+          //   fontSize: 40,
+          //   fontWeight: FontWeight.bold,
+
+          // ),
         ),
         const SizedBox(height: 8),
-        const Text(
+        Text(
           'Commitment to staying updated with the latest design trends and techniques.',
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.black54,
-            height: 1.5,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                height: 1.5,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         const SizedBox(height: 32),
         Expanded(

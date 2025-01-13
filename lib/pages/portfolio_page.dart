@@ -8,6 +8,7 @@ import 'package:portfolio_web/components/widgets/studio_section.dart';
 
 import '../components/widgets/case_sturdy_card.dart';
 import '../components/sections/footer.dart';
+import '../theme/app_theme.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({super.key});
@@ -154,96 +155,101 @@ class _PortfolioPageState extends State<PortfolioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 216, 224, 220),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 30, horizontal: 70),
-                child: Column(
-                  children: [
-                    // Navigation Bar
-                    NavigationBarNew(context),
+          child: Container(
+            decoration: AppTheme.glowingContainer,
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 70),
+                  child: Column(
+                    children: [
+                      // Navigation Bar
+                      NavigationBarNew(context),
 
-                    // Main Content
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        double maxWidth = constraints.maxWidth;
-                        bool isWideScreen = maxWidth > 900;
+                      // Main Content
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          double maxWidth = constraints.maxWidth;
+                          bool isWideScreen = maxWidth > 900;
 
-                        return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 40.0),
-                            child: isWideScreen
-                                ? const Stack(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 100),
-                                        child: Center(child: ContentSection()),
-                                      ), // Background element
-                                      Positioned.fill(
-                                        child: Align(
-                                          alignment: Alignment
-                                              .center, // Adjust as needed
-                                          child: FractionallySizedBox(
-                                            widthFactor:
-                                                0.5, // Adjust width as needed
-                                            child: LottieObject(),
+                          return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 40.0),
+                              child: isWideScreen
+                                  ? const Stack(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 100),
+                                          child:
+                                              Center(child: ContentSection()),
+                                        ), // Background element
+                                        Positioned.fill(
+                                          child: Align(
+                                            alignment: Alignment
+                                                .center, // Adjust as needed
+                                            child: FractionallySizedBox(
+                                              widthFactor:
+                                                  0.5, // Adjust width as needed
+                                              child: LottieObject(),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  )
-                                : const Stack(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 20),
-                                        child: Center(child: ContentSection()),
-                                      ), // Background element
-                                      Positioned.fill(
-                                        child: Align(
-                                          alignment: Alignment
-                                              .center, // Adjust as needed
-                                          child: FractionallySizedBox(
-                                            widthFactor:
-                                                0.5, // Adjust width as needed
-                                            child: LottieObject(),
+                                      ],
+                                    )
+                                  : const Stack(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 20),
+                                          child:
+                                              Center(child: ContentSection()),
+                                        ), // Background element
+                                        Positioned.fill(
+                                          child: Align(
+                                            alignment: Alignment
+                                                .center, // Adjust as needed
+                                            child: FractionallySizedBox(
+                                              widthFactor:
+                                                  0.5, // Adjust width as needed
+                                              child: LottieObject(),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ));
-                      },
-                    ),
-                    const studioSection(),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InfinitDragableSlider(
-                      caseStudies: caseStudies,
-                      itemBuilder: (context, index) =>
-                          CaseStudyCard(caseStudy: caseStudies[index]),
-                      iteamCount: caseStudies.length,
-                    ),
-                    const SizedBox(
-                      height: 120,
-                    ),
-                    const SizedBox(height: 650, child: MyStacks()),
+                                      ],
+                                    ));
+                        },
+                      ),
+                      const studioSection(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      InfinitDragableSlider(
+                        caseStudies: caseStudies,
+                        itemBuilder: (context, index) =>
+                            CaseStudyCard(caseStudy: caseStudies[index]),
+                        iteamCount: caseStudies.length,
+                      ),
+                      const SizedBox(
+                        height: 120,
+                      ),
+                      const SizedBox(height: 650, child: MyStacks()),
 
-                    // const SizedBox(
-                    //   height: 886,
-                    //   child: CaseStudyCarousel(),
-                    // ),
+                      // const SizedBox(
+                      //   height: 886,
+                      //   child: CaseStudyCarousel(),
+                      // ),
 
-                    //const SizedBox(height: 200, child: WaterTextEffectPage()),
-                  ],
+                      //const SizedBox(height: 200, child: WaterTextEffectPage()),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 500, child: FooterSection()),
-            ],
+                const SizedBox(height: 500, child: FooterSection()),
+              ],
+            ),
           ),
         ),
       ),

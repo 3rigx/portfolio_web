@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web/theme/app_colors.dart';
 
 class BuildToolCard extends StatefulWidget {
   final String imagePath;
@@ -11,7 +12,7 @@ class BuildToolCard extends StatefulWidget {
   State<BuildToolCard> createState() => BuildToolCardState();
 }
 
-class BuildToolCardState extends State<BuildToolCard> 
+class BuildToolCardState extends State<BuildToolCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -48,8 +49,7 @@ class BuildToolCardState extends State<BuildToolCard>
         _controller.reverse();
       },
       child: Card(
-        color: Colors.white,
-        elevation: 1,
+        color: Colors.black,
         child: Material(
           color: Colors.transparent,
           child: InkWell(
@@ -62,8 +62,7 @@ class BuildToolCardState extends State<BuildToolCard>
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Card(
-                      elevation: 1,
-                      color: Colors.white,
+                      color: Colors.black,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
@@ -83,19 +82,20 @@ class BuildToolCardState extends State<BuildToolCard>
                       children: [
                         Text(
                           widget.title,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: AppColors.text,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           widget.subtitle,
-                          style: const TextStyle(
-                            color: Colors.black54,
-                            fontSize: 14,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    fontSize: 12,
+                                    color: AppColors.text.withOpacity(0.6),
+                                  ),
                         ),
                       ],
                     ),
@@ -106,7 +106,6 @@ class BuildToolCardState extends State<BuildToolCard>
                       angle: _animation.value,
                       child: const Icon(
                         Icons.arrow_forward,
-                        color: Colors.black,
                       ),
                     ),
                   ),
