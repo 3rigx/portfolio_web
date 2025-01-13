@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_web/components/widgets/hoverable_card.dart';
+
+import '../../../../theme/app_colors.dart';
+import '../../../../theme/app_theme.dart';
 
 class TestimonialsAndBrands extends StatefulWidget {
   const TestimonialsAndBrands({super.key});
@@ -89,22 +93,20 @@ class _TestimonialsAndBrandsState extends State<TestimonialsAndBrands> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Testimonials From Peers & Coworkers',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        //  fontSize: 36,
+                        // fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Here are a few kind words people have to say about collaborating and solving problems with me.',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w100,
-                        height: 1.6,
-                        letterSpacing: 0.5,
-                        color: Colors.black),
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          height: 1.6,
+                          letterSpacing: 0.5,
+                        ),
                   ),
                 ],
               ),
@@ -116,7 +118,8 @@ class _TestimonialsAndBrandsState extends State<TestimonialsAndBrands> {
                 itemCount: testimonials.length,
                 rightToLeft: true,
                 itemBuilder: (context, index) {
-                  return TestimonialCard(testimonial: testimonials[index]);
+                  return HoverableCard(
+                      child: TestimonialCard(testimonial: testimonials[index]));
                 },
               ),
             ),
@@ -126,7 +129,6 @@ class _TestimonialsAndBrandsState extends State<TestimonialsAndBrands> {
               child: Text(
                 'Some brands I\'ve worked with...',
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 34,
                   fontWeight: FontWeight.bold,
                 ),
@@ -144,7 +146,7 @@ class _TestimonialsAndBrandsState extends State<TestimonialsAndBrands> {
                       horizontal: 12,
                       vertical: 8,
                     ),
-                    child: BrandLogo(name: brands[index]),
+                    child: HoverableCard(child: BrandLogo(name: brands[index])),
                   );
                 },
               ),
@@ -280,33 +282,36 @@ class TestimonialCard extends StatelessWidget {
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.surface.withOpacity(0.6),
+            blurRadius: 8,
+            spreadRadius: 2,
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             testimonial.text,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-            ),
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           const Spacer(),
           Text(
             testimonial.author,
-            style: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           Text(
             testimonial.role,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 12,
-            ),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  fontSize: 12,
+                  color: AppColors.text.withOpacity(0.5),
+                ),
           ),
         ],
       ),
@@ -331,7 +336,7 @@ class BrandLogo extends StatelessWidget {
           child: Container(
             width: 240,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.dark.withOpacity(0.9),
               borderRadius: BorderRadius.circular(4),
             ),
           ),
@@ -342,17 +347,16 @@ class BrandLogo extends StatelessWidget {
           child: Container(
             width: 240,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.dark.withOpacity(0.1),
               borderRadius: BorderRadius.circular(4),
             ),
             child: Center(
               child: Text(
                 name,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
               ),
             ),
           ),

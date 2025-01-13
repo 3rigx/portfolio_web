@@ -17,7 +17,8 @@ class FooterSectionState extends State<FooterSection> {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.white,
-      body: Container( decoration: AppTheme.glowingContainer,
+      body: Container(
+        decoration: AppTheme.glowingContainer,
         child: Padding(
           padding: const EdgeInsets.all(32.0),
           child: Column(
@@ -56,7 +57,6 @@ class FooterSectionState extends State<FooterSection> {
                         'Contact me:',
                         style: TextStyle(
                           fontSize: 12,
-                     
                         ),
                       ),
                       Row(
@@ -66,9 +66,7 @@ class FooterSectionState extends State<FooterSection> {
                           Text(
                             'greendlyguosadia@gmail.com',
                             style: TextStyle(
-                                fontSize: 12,
-                               
-                                fontWeight: FontWeight.bold),
+                                fontSize: 12, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(width: 8),
                           Icon(
@@ -88,9 +86,12 @@ class FooterSectionState extends State<FooterSection> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     'Design & Developed\nby GreendlyOsaGuosadia',
-                    style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(fontWeight: FontWeight.bold),
                   ),
                   Row(
                     children: [
@@ -110,9 +111,12 @@ class FooterSectionState extends State<FooterSection> {
                       ),
                     ],
                   ),
-                  const Text(
+                  Text(
                     '© 2025 - All Rights Reserved\nBack to top ↑',
-                    style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.right,
                   ),
                 ],

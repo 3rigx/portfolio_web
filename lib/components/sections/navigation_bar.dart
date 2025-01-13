@@ -19,8 +19,8 @@ class NavigationBarNew extends StatelessWidget {
           // Logo
           const HoverableCard(
             child: Card(
-              //  color: Colors.white,
-              elevation: 1,
+              color: Colors.black,
+              // elevation: 1,
               child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                   child: Text(
@@ -32,7 +32,8 @@ class NavigationBarNew extends StatelessWidget {
           // Center Navigation
           HoverableCard(
             child: Card(
-              elevation: 1,
+              color: Colors.black,
+              //elevation: 1,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24.0,

@@ -33,7 +33,7 @@ class HeaderContent extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "I'm Greendly, a Software Developer from Nigeria with over 5 years of experience "
+                "I'm Greendly, a Software Developer from Nigeria with over 7+ years of experience "
                 "creating high-performance mobile apps and scalable web applications. My work has "
                 "driven measurable results, such as a 20% increase in sales efficiency through a "
                 "Smart CRM application and real-time vote aggregation for election analytics using "
@@ -42,21 +42,19 @@ class HeaderContent extends StatelessWidget {
                       //  fontWeight: FontWeight.w100,
                       height: 1.6,
                       letterSpacing: 0.5,
-                      fontSize: 16,
                     ),
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'I thrive on collaborating on challenging projects, leveraging my expertise '
                 'to deliver innovative solutions to complex technical problems.',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  height: 1.5,
-                ),
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      height: 1.5,
+                    ),
                 textAlign: TextAlign.justify,
               ),
             ],

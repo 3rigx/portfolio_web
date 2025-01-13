@@ -34,11 +34,10 @@ class SocialButtonState extends State<SocialButton> {
           ),
           child: Text(
             widget.text,
-            style: TextStyle(
-              color: _isHovered ? Colors.black : Colors.white,
-              fontSize: 6,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  color: _isHovered ? Colors.black : Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
       ),

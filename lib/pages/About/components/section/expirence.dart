@@ -21,30 +21,27 @@ class ExperienceSection extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 "I enjoy leveraging my technical expertise and creative problem-solving skills to develop innovative solutions that address complex challenges. I thrive in collaborative, forward-thinking environments that encourage continuous learning and value impactful, user-centered development.",
-                style: TextStyle(
-                  fontSize: 13,
-                  height: 1.5,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.5,
+                    ),
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 "My technical journey spans various disciplines, including mobile and web development, data analytics, CRM systems, and e-commerce solutions. I am proficient in tools and technologies such as C#, Flutter, React, SQL Server, Tableau, Firebase, and WordPress. Beyond coding, I have a flair for creative design with Adobe Photoshop and a keen eye for streamlining processes through automation and collaboration.",
-                style: TextStyle(
-                  fontSize: 13,
-                  height: 1.5,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.5,
+                    ),
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 "Outside of work, I’m passionate about motorsports like Formula 1 and Football. I enjoy gaming with favorites like Fortnite and FC25. My adventurous side thrives in outdoor activities such as go-karting, archery, kayaking, Paintball, lazer tag, swimming, golf, and biking through scenic trails. Fitness is an integral part of my life, and I find fulfillment in gym sessions that keep me energized and focused.",
-                style: TextStyle(
-                  fontSize: 13,
-                  height: 1.5,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.5,
+                    ),
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(height: 16),
@@ -185,15 +182,14 @@ class _ExperienceItem extends StatelessWidget {
         Text(
           company,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontSize: 14,
+                //     fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
         ),
         Text(
           '$role • $duration',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 fontWeight: FontWeight.bold,
-                fontSize: 13,
               ),
         ),
         const SizedBox(
@@ -207,7 +203,6 @@ class _ExperienceItem extends StatelessWidget {
                     child: Text(
                       description,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: 13,
                             height: 1.5,
                           ),
                     ),
@@ -240,13 +235,13 @@ class _EducationItem extends StatelessWidget {
           institution,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
-                fontSize: 14,
+                //  fontSize: 14,
               ),
         ),
         Text(
           degree,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontSize: 13,
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                fontWeight: FontWeight.bold,
               ),
         ),
         const SizedBox(
@@ -260,7 +255,7 @@ class _EducationItem extends StatelessWidget {
                     child: Text(
                       award,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: 13,
+                            //fontSize: 13,
                             // fontWeight: FontWeight.bold,
                             height: 1.5,
                           ),
