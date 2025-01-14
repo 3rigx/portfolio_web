@@ -73,41 +73,9 @@ class DesktopLayout extends StatelessWidget {
                   const SizedBox(height: 50),
                   const ExperienceSection(),
                   const SizedBox(height: 20),
-                  const CurvedTopBorderContainer(
-                    height: 400,
-                    curveHeight: 40,
-                    backgroundColor: Color(0xFF1A1A1A),
-                    child: Center(
-                      child: Text(
-                        'payment infrastructure',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                        ),
-                      ),
-                    ),
-                  ),
-                  DashedLineContainer(
-                    height: 400,
-                    lineColor: Colors.green, // Or any color you prefer
-                    lineThickness: 2,
-                    dashWidth: 20,
-                    child: Container(
-                      color: Colors.black,
-                      child: const Center(
-                        child: Text(
-                          'payment infrastructure',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 32,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+        
+        
+           
                 ],
               ),
             ),
