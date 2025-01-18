@@ -3,8 +3,6 @@ import 'package:portfolio_web/components/widgets/hoverable_card.dart';
 
 import '../../../components/sections/footer.dart';
 import '../../../components/sections/navigation_bar.dart';
-import '../../../components/widgets/curved_coontianer.dart';
-import '../../../components/widgets/dashed_container.dart';
 import '../../../theme/app_theme.dart';
 import 'section/expirence.dart';
 import 'section/header.dart';

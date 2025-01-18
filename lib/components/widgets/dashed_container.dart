@@ -8,19 +8,19 @@ class DashedLineContainer extends StatelessWidget {
   final double dashWidth;
   
   const DashedLineContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.height = 200,
     this.lineColor = Colors.white,
     this.lineThickness = 2,
     this.dashWidth = 20,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
+        SizedBox(
           height: height,
           width: double.infinity,
           child: child,
