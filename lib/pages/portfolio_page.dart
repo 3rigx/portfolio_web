@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:portfolio_web/components/sections/content_section.dart';
 import 'package:portfolio_web/components/sections/infinit_dragable_slider.dart';
 import 'package:portfolio_web/components/lottie/lottie_comp.dart';
@@ -191,10 +192,23 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                           child: Align(
                                             alignment: Alignment
                                                 .center, // Adjust as needed
-                                            child: FractionallySizedBox(
-                                              widthFactor:
-                                                  0.5, // Adjust width as needed
-                                              child: LottieObject(),
+                                            child: SizedBox(
+                                              height: 800,
+                                              width: double.infinity,
+                                              child: ModelViewer(
+                                                src:
+                                                    '3dmodel/diamond.glb', // Update path to use assets/
+                                                alt: "A 3D model",
+                                                ar: true,
+                                                autoRotate: true,
+                                                cameraControls: true,
+                                                shadowIntensity: 1,
+                                                autoPlay: true,
+                                                backgroundColor: Colors
+                                                    .white, // Add this for better integration
+                                                loading: Loading
+                                                    .eager, // Add this to control loading behavior
+                                              ),
                                             ),
                                           ),
                                         ),
