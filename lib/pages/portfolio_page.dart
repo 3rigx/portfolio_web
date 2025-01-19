@@ -195,20 +195,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                             child: SizedBox(
                                               height: 800,
                                               width: double.infinity,
-                                              child: ModelViewer(
-                                                src:
-                                                    '3dmodel/diamond.glb', // Update path to use assets/
-                                                alt: "A 3D model",
-                                                ar: true,
-                                                autoRotate: true,
-                                                cameraControls: true,
-                                                shadowIntensity: 1,
-                                                autoPlay: true,
-                                                backgroundColor: Colors
-                                                    .white, // Add this for better integration
-                                                loading: Loading
-                                                    .eager, // Add this to control loading behavior
-                                              ),
+                                              child: Container(),
+                                              //place 3d model
                                             ),
                                           ),
                                         ),
