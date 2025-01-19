@@ -180,9 +180,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
                               padding:
                                   const EdgeInsets.symmetric(vertical: 40.0),
                               child: isWideScreen
-                                  ? const Stack(
+                                  ?  Stack(
                                       children: [
-                                        Padding(
+                                        const Padding(
                                           padding: EdgeInsets.symmetric(
                                               vertical: 100),
                                           child:
