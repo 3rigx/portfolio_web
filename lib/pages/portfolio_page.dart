@@ -180,9 +180,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
                               padding:
                                   const EdgeInsets.symmetric(vertical: 40.0),
                               child: isWideScreen
-                                  ?  Stack(
+                                  ? const Stack(
                                       children: [
-                                        const Padding(
+                                        Padding(
                                           padding: EdgeInsets.symmetric(
                                               vertical: 100),
                                           child:
@@ -195,7 +195,26 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                             child: SizedBox(
                                               height: 800,
                                               width: double.infinity,
-                                              child: Container(),
+                                              child: Center(
+                                                child: SizedBox(
+                                                  height: 100,
+                                                  width: double.infinity,
+                                                  child: ModelViewer(
+                                                    src:
+                                                        'assets/3dmodel/liquid_gem.glb', // Update path to use assets/
+                                                    alt: "A 3D model",
+                                                    ar: true,
+                                                    autoRotate: true,
+                                                    cameraControls: true,
+                                                    shadowIntensity: 1,
+                                                    autoPlay: true,
+                                                    backgroundColor: Colors
+                                                        .transparent, // Add this for better integration
+                                                    loading: Loading
+                                                        .eager, // Add this to control loading behavior
+                                                  ),
+                                                ),
+                                              ),
                                               //place 3d model
                                             ),
                                           ),
