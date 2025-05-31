@@ -197,21 +197,25 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                               width: double.infinity,
                                               child: Center(
                                                 child: SizedBox(
-                                                  height: 100,
+                                                  height: 500,
                                                   width: double.infinity,
-                                                  child: ModelViewer(
-                                                    src:
-                                                        'assets/3dmodel/liquid_gem.glb', // Update path to use assets/
-                                                    alt: "A 3D model",
-                                                    ar: true,
-                                                    autoRotate: true,
-                                                    cameraControls: true,
-                                                    shadowIntensity: 1,
-                                                    autoPlay: true,
-                                                    backgroundColor: Colors
-                                                        .transparent, // Add this for better integration
-                                                    loading: Loading
-                                                        .eager, // Add this to control loading behavior
+                                                  child: Tooltip(
+                                                    message:
+                                                        'You can interact with it!, Click to reveal my Middle name.',
+                                                    child: ModelViewer(
+                                                      src:
+                                                          'assets/3dmodel/liquid_gem.glb',
+                                                      alt: "A 3D model",
+                                                      ar: true,
+                                                      autoRotate: true,
+                                                      cameraControls: true,
+                                                      shadowIntensity: 1,
+                                                      autoPlay: true,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      loading: Loading.eager,
+                                                      disableZoom: true,
+                                                    ),
                                                   ),
                                                 ),
                                               ),

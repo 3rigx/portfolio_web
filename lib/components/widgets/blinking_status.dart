@@ -42,39 +42,47 @@ class _BlinkingStatusIndicatorState extends State<BlinkingStatusIndicator>
   @override
   Widget build(BuildContext context) {
     return HoverableCard(
-      child: Container(
-        // padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        decoration: AppTheme.glowingContainer,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AnimatedBuilder(
-                animation: _opacityAnimation,
-                builder: (context, child) {
-                  return Container(
-                    width: widget.dotSize,
-                    height: widget.dotSize,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color:
-                          widget.dotColor.withAlpha(
-                            (255 * _opacityAnimation.value).round(),
-                          ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AnimatedBuilder(
+              animation: _opacityAnimation,
+              builder: (context, child) {
+                return Container(
+                  width:
+                      widget.dotSize + 6, // Slightly larger for more visibility
+                  height: widget.dotSize + 6,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: widget.dotColor.withAlpha(
+                      (((0.7 + 0.3 * _opacityAnimation.value) * 255).toInt())
+                          .clamp(0, 255),
                     ),
-                  );
-                },
+                    boxShadow: [
+                      BoxShadow(
+                        color: widget.dotColor.withAlpha(
+                          (0.7 * _opacityAnimation.value * 255)
+                              .toInt()
+                              .clamp(0, 255),
+                        ),
+                        blurRadius: 16,
+                        spreadRadius: 1,
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            const SizedBox(width: 8),
+            Text(
+              widget.text,
+              style: const TextStyle(
+                fontSize: 14,
               ),
-              const SizedBox(width: 8),
-              Text(
-                widget.text,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
