@@ -239,7 +239,9 @@ class SlideItem extends StatelessWidget {
               animation: imageAnimation,
               child: Container(
                 foregroundDecoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withAlpha(
+                    (255 * 0.5).toInt(),
+                  ),
                 ),
                 child: Image.network(
                   slide.mainImage,

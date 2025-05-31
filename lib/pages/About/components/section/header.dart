@@ -25,7 +25,9 @@ class HeaderContent extends StatelessWidget {
         // Biography
         Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+            color: Theme.of(context).colorScheme.primary.withAlpha(
+                    (255 * 0.6).toInt(),
+                  ),
             borderRadius: BorderRadius.circular(12),
             //  borderRadius: BorderRadius.circular(12),
           ),

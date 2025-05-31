@@ -99,10 +99,16 @@ class _RecursiveImageListState extends State<RecursiveImageList>
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    Colors.white.withOpacity(0),
+                    Colors.white
+                      ..withAlpha(
+                        (255 * 0.5).toInt(),
+                      ),
                     Colors.white70,
                     Colors.white70,
-                    Colors.white.withOpacity(0),
+                    Colors.white
+                      ..withAlpha(
+                        (255 * 0.5).toInt(),
+                      ),
                   ],
                   stops: const [0.0, 0.15, 0.85, 1.0],
                 ).createShader(bounds);

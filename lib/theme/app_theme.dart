@@ -34,7 +34,9 @@ class AppTheme {
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.background,
         elevation: 4,
-        shadowColor: AppColors.primary.withOpacity(0.5),
+        shadowColor: AppColors.primary.withAlpha(
+          (255 * 0.5).toInt(),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
         ),
@@ -47,7 +49,9 @@ class AppTheme {
     borderRadius: BorderRadius.circular(borderRadius),
     boxShadow: [
       BoxShadow(
-        color: AppColors.primary.withOpacity(0.15),
+        color: AppColors.primary.withAlpha(
+          (255 * 0.15).toInt(),
+        ),
         blurRadius: 12,
         spreadRadius: 2,
       ),
@@ -59,7 +63,9 @@ class AppTheme {
     borderRadius: BorderRadius.circular(borderRadius),
     boxShadow: [
       BoxShadow(
-        color: AppColors.primary.withOpacity(0.2),
+        color: AppColors.primary.withAlpha(
+          (255 * 0.2).toInt(),
+        ),
         blurRadius: 8,
         spreadRadius: 1,
       ),

@@ -94,7 +94,10 @@ class BuildToolCardState extends State<BuildToolCard>
                           style:
                               Theme.of(context).textTheme.labelSmall?.copyWith(
                                     fontSize: 12,
-                                    color: AppColors.text.withOpacity(0.6),
+                                    color: AppColors.text
+                                      ..withAlpha(
+                                        (255 * 0.6).toInt(),
+                                      ),
                                   ),
                         ),
                       ],

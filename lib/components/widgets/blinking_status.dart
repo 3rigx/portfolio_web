@@ -59,7 +59,9 @@ class _BlinkingStatusIndicatorState extends State<BlinkingStatusIndicator>
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color:
-                          widget.dotColor.withOpacity(_opacityAnimation.value),
+                          widget.dotColor.withAlpha(
+                            (255 * _opacityAnimation.value).round(),
+                          ),
                     ),
                   );
                 },

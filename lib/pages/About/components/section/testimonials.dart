@@ -81,7 +81,9 @@ class _TestimonialsAndBrandsState extends State<TestimonialsAndBrands> {
       padding: const EdgeInsets.symmetric(horizontal: 44.0, vertical: 20),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary.withOpacity(0.05),
+          color: Theme.of(context).colorScheme.primary..withAlpha(
+                    (255 * 0.5).toInt(),
+                  ),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -285,7 +287,9 @@ class TestimonialCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: AppColors.surface.withOpacity(0.6),
+            color: AppColors.surface..withAlpha(
+                    (255 * 0.6).toInt(),
+                  ),
             blurRadius: 8,
             spreadRadius: 2,
           ),
@@ -309,7 +313,9 @@ class TestimonialCard extends StatelessWidget {
             testimonial.role,
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontSize: 12,
-                  color: AppColors.text.withOpacity(0.5),
+                  color: AppColors.text..withAlpha(
+                    (255 * 0.5).toInt(),
+                  ),
                 ),
           ),
         ],
@@ -335,7 +341,9 @@ class BrandLogo extends StatelessWidget {
           child: Container(
             width: 240,
             decoration: BoxDecoration(
-              color: AppColors.dark.withOpacity(0.9),
+              color: AppColors.dark.withAlpha(
+                    (255 * 0.9).toInt(),
+                  ),
               borderRadius: BorderRadius.circular(4),
             ),
           ),
@@ -346,7 +354,9 @@ class BrandLogo extends StatelessWidget {
           child: Container(
             width: 240,
             decoration: BoxDecoration(
-              color: AppColors.dark.withOpacity(0.1),
+              color: AppColors.dark.withAlpha(
+                    (255 * 0.1).toInt(),
+                  ),
               borderRadius: BorderRadius.circular(4),
             ),
             child: Center(
