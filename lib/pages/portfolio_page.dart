@@ -22,42 +22,46 @@ class _PortfolioPageState extends State<PortfolioPage> {
   final List<Map<String, dynamic>> caseStudies = [
     {
       'id': '01',
-      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
-      'images': ['assets/asset2.jpg', 'assets/asset1.jpg'],
+      'title': 'Cosmetic brand Flawless - Created with Wordpress',
+      'images': ['assets/flawless3.jpg', 'assets/flawless2.jpeg'],
       'statistics': [
         {
-          'percentage': '12%',
-          'description': 'Click rates for\nJob Description and AI writer'
+          'percentage': '62%',
+          'description': 'An online beauty \nand skincare shop.'
         },
-        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+        {
+          'percentage': '5 Stars',
+          'description': 'The website includes \nmultiple customer reviews'
+        }
       ],
       'tags': ['MOBILE', 'WEB', '500K MAU']
     },
     {
       'id': '02',
-      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
-      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'title':
+          'logistics company dedicated to fast, secure, and reliable shipping, Built with Wordpress.',
+      'images': ['assets/parcelkeepers1.jpeg', 'assets/parcelkeepers2.jpeg'],
       'statistics': [
         {
-          'percentage': '12%',
-          'description': 'Click rates for\nJob Description and AI writer'
+          'percentage': '24/7',
+          'description': 'Customer support\nReal-time tracking\nglobal reach'
         },
-        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+        {'percentage': '1.9%', 'description': 'Click rates'}
       ],
       'tags': ['MOBILE', 'WEB', '500K MAU']
     },
     {
       'id': '03',
-      'title': 'AI-Powered Job Matching Platform',
-      'images': ['assets/asset2.jpg', 'assets/asset1.jpg'],
+      'title': 'Royal Express Logistics, Built with FLutter.',
+      'images': ['assets/royalexpress1.png', 'assets/royalexpress3.png'],
       'statistics': [
         {
           'percentage': '25%',
           'description': 'Increase in\nsuccessful placements'
         },
-        {'percentage': '15%', 'description': 'Reduction in\nhiring time'}
+        {'percentage': '15%', 'description': 'Reduction in\ndelivery time'}
       ],
-      'tags': ['AI', 'ENTERPRISE', '1M MAU']
+      'tags': ['LOGISTICS', 'SHIPPING','ENTERPRISE', 'MOBILE', 'WEB', 'FLUTTER']
     },
     {
       'id': '04',

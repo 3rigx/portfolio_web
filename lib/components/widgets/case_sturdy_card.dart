@@ -81,6 +81,7 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
                                 'INSIGHTS',
                                 style: TextStyle(
                                   fontSize: 16,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -203,12 +204,14 @@ class _CaseStudyCardState extends State<CaseStudyCard> {
           percentage,
           style: const TextStyle(
             fontSize: 48,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           description,
           style: const TextStyle(
+            color: Colors.black,
             fontSize: 16,
           ),
         ),
