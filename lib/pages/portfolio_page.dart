@@ -65,55 +65,55 @@ class _PortfolioPageState extends State<PortfolioPage> {
     },
     {
       'id': '04',
-      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
-      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'title': 'Luminova Trust Capital | Financial Solutions & Investment Services Built with Flutter',
+      'images': ['assets/lumi3.png', 'assets/lumi4.png'],
       'statistics': [
         {
           'percentage': '12%',
-          'description': 'Click rates for\nJob Description and AI writer'
+          'description': 'Raised capital\nfrom MassChallenge'
         },
-        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+        {'percentage': '', 'description': 'Business brokerage\nfinancial consulting'}
       ],
-      'tags': ['MOBILE', 'WEB', '500K MAU']
+      'tags': ['MOBILE', 'WEB', 'Financial Solutions', 'Investment Services']
     },
     {
       'id': '05',
-      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
-      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'title': 'OnlyBandOption | Cryptocurrency & Investment Services Built with Flutter',
+      'images': ['assets/onad4.png', 'assets/onad7.png'],
       'statistics': [
         {
-          'percentage': '12%',
-          'description': 'Click rates for\nJob Description and AI writer'
+          'percentage': '73%',
+          'description': 'Trust Score\nin AI guided trading'
         },
-        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+        {'percentage': '15%', 'description': 'Traffic ranking in\nreturning users'}
       ],
-      'tags': ['MOBILE', 'WEB', '500K MAU']
+      'tags': ['MOBILE', 'WEB', 'Cryptocurrency','Investments', 'Flutter']
     },
     {
       'id': '06',
-      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
-      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'title': 'Investment Cove built with Flutter',
+      'images': ['assets/cove2.png', 'assets/cove6.png'],
       'statistics': [
         {
-          'percentage': '12%',
-          'description': 'Click rates for\nJob Description and AI writer'
+          'percentage': '8%',
+          'description': 'Foreign Direct Investment\nDecline in 2024'
         },
-        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+        {'percentage': '5%', 'description': 'Increase in\nMutual funds \nand ETFs'}
       ],
-      'tags': ['MOBILE', 'WEB', '500K MAU']
+      'tags': ['MOBILE', 'WEB', 'Investments', 'Flutter']
     },
     {
       'id': '07',
-      'title': 'Empowered 500k Users with AI-Enhanced Resume Builder',
-      'images': ['assets/asset1.jpg', 'assets/asset2.jpg'],
+      'title': 'SmartCRM - comprehensive CRM system',
+      'images': ['assets/crm2.jpg', 'assets/crm6.jpg'],
       'statistics': [
         {
-          'percentage': '12%',
-          'description': 'Click rates for\nJob Description and AI writer'
+          'percentage': '42%',
+          'description': 'Increase in\nSales Management'
         },
-        {'percentage': '5%', 'description': 'Increase in\nresume building'}
+        {'percentage': '85%', 'description': 'Increase in\nInsights and Analytics'}
       ],
-      'tags': ['MOBILE', 'WEB', '500K MAU']
+      'tags': ['ERP Integration', 'WEB', 'Data Analytics', 'SQL', 'Local Server', 'ReactJS']
     },
     {
       'id': '08',
