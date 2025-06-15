@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:portfolio_web/pages/contact/contact_page.dart';
 import 'package:portfolio_web/pages/experiments/experiments.dart';
 import 'package:portfolio_web/pages/portfolio_page.dart';
 
@@ -29,6 +30,11 @@ final router = GoRouter(
           path: 'experiments',
           name: 'experiments',
           builder: (context, state) => const Experiments(),
+        ),
+           GoRoute(
+          path: 'contact',
+          name: 'contact',
+          builder: (context, state) => const ContactPage(),
         ),
       ],
     ),

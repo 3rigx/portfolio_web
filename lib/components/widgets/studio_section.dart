@@ -13,6 +13,7 @@ class studioSection extends StatefulWidget {
   State<studioSection> createState() => _studioSectionState();
 }
 
+// ignore: camel_case_types
 class _studioSectionState extends State<studioSection> {
   bool _showFirst = false;
   bool _showSecond = false;

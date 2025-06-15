@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_web/components/widgets/hoverable_card.dart';
 
-import '../../theme/app_theme.dart';
-
 class BlinkingStatusIndicator extends StatefulWidget {
   final String text;
   final Color dotColor;

@@ -60,7 +60,9 @@ class NavigationBarNew extends StatelessWidget {
 
           // Contact Button
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              context.goNamed('contact');
+            },
             // style: ElevatedButton.styleFrom(
             //   backgroundColor: Colors.white,
             //   foregroundColor: Colors.black,

@@ -14,7 +14,7 @@ class AboutPage extends StatelessWidget {
           if (constraints.maxWidth > 800) {
             return const DesktopLayout();
           }
-          return const MobileLayout();
+          return const DesktopLayout();
         },
       ),
     );

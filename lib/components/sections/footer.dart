@@ -25,9 +25,9 @@ class FooterSectionState extends State<FooterSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox(height: 40),
-              const Column(
+              Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -41,7 +41,7 @@ class FooterSectionState extends State<FooterSection> {
                       SizedBox(height: 80, child: HandWaveLottie()),
                     ],
                   ),
-                  Text(
+                  const Text(
                     'WORKING TOGETHER?',
                     style: TextStyle(
                       fontSize: 48,
@@ -53,28 +53,43 @@ class FooterSectionState extends State<FooterSection> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Contact me:',
                         style: TextStyle(
                           fontSize: 12,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'greendlyguosadia@gmail.com',
-                            style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold),
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () async {
+                            final Uri emailUri = Uri(
+                              scheme: 'mailto',
+                              path: 'greendlyguosadia@gmail.com',
+                              query: 'subject=Hello',
+                            );
+                            if (await canLaunchUrl(emailUri)) {
+                              await launchUrl(emailUri);
+                            }
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'greendlyguosadia@gmail.com',
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(width: 8),
+                              Icon(
+                                Icons.mouse_outlined,
+                                size: 16,
+                                weight: 60,
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 8),
-                          Icon(
-                            Icons.mouse_outlined,
-                            size: 16,
-                            weight: 60,
-                          ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
@@ -97,22 +112,24 @@ class FooterSectionState extends State<FooterSection> {
                     children: [
                       SocialButton(
                         text: 'INSTAGRAM',
-                        onTap: () => _launchURL('https://instagram.com'),
+                        onTap: () => _launchURL(
+                            'https://www.instagram.com/greendly_guos/#'),
                       ),
                       const SizedBox(width: 20),
                       SocialButton(
                         text: 'X',
-                        onTap: () => _launchURL('https://x.com'),
+                        onTap: () => _launchURL('https://x.com/3rigx'),
                       ),
                       const SizedBox(width: 20),
                       SocialButton(
                         text: 'LINKEDIN',
-                        onTap: () => _launchURL('https://linkedin.com'),
+                        onTap: () => _launchURL(
+                            'https://www.linkedin.com/in/greendly-guos/'),
                       ),
                     ],
                   ),
                   Text(
-                    '© 2025 - All Rights Reserved\nBack to top ↑',
+                    '© 2025 - All Rights Reserved',
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
@@ -129,8 +146,10 @@ class FooterSectionState extends State<FooterSection> {
   }
 
   void _launchURL(String url) async {
-    if (await canLaunchUrl(url as Uri)) {
-      await launchUrl(url as Uri);
+    //final Uri url = Uri.parse(url);
+    if (!await launchUrl(Uri.parse(url),
+        mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
     }
   }
 }
