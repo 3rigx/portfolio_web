@@ -278,7 +278,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                     ));
                         },
                       ),
-                      const studioSection(),
+                      const studioSection(
+                        show: true,
+                      ),
                       const SizedBox(
                         height: 10,
                       ),

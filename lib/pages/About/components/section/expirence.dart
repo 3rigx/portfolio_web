@@ -136,6 +136,14 @@ class ExperienceSection extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
+              const _EducationItem(
+                institution: 'Canterbury Christ Church University, UK',
+                degree: 'Maaster of Science in Data Intelligence',
+                awards: ['....Ongoing'],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
               InkWell(
                 onTap: () {},
                 child: const Card(

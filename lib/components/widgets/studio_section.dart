@@ -5,20 +5,21 @@ import 'blinking_status.dart';
 
 // ignore: camel_case_types
 class studioSection extends StatefulWidget {
-  const studioSection({
-    super.key,
-  });
+  final bool show;
+  const studioSection({super.key, required this.show});
 
   @override
   State<studioSection> createState() => _studioSectionState();
 }
 
 // ignore: camel_case_types
-class _studioSectionState extends State<studioSection> {
+class _studioSectionState extends State<studioSection>
+    with SingleTickerProviderStateMixin {
   bool _showFirst = false;
   bool _showSecond = false;
   bool _showThird = false;
-
+  late AnimationController _controller;
+  late Animation<double> _bounceAnimation;
   @override
   void initState() {
     super.initState();
@@ -31,6 +32,23 @@ class _studioSectionState extends State<studioSection> {
         });
       });
     });
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    )..repeat(reverse: true);
+
+    _bounceAnimation =
+        Tween<double>(begin: 0.0, end: -8.0).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -38,33 +56,33 @@ class _studioSectionState extends State<studioSection> {
     return Row(
       children: [
         AnimatedOpacity(
-          opacity: _showFirst ? 1.0 : 0.0,
+          opacity: widget.show ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 500),
           child: AnimatedSlide(
-            offset: _showFirst ? Offset.zero : const Offset(-0.2, 0),
+            offset: widget.show ? Offset.zero : const Offset(-0.2, 0),
             duration: const Duration(milliseconds: 500),
-            child: OutlinedButton(
-              onPressed: () {},
-              child: const Text('My Studio'),
-            ),
-          ),
-        ),
-        const SizedBox(width: 16),
-        AnimatedOpacity(
-          opacity: _showSecond ? 1.0 : 0.0,
-          duration: const Duration(milliseconds: 500),
-          child: AnimatedSlide(
-            offset: _showSecond ? Offset.zero : const Offset(-0.2, 0),
-            duration: const Duration(milliseconds: 800),
-            child: OutlinedButton(
-              onPressed: () {},
-              child: const Row(
-                children: [
-                  Text('Latest work'),
-                  SizedBox(width: 8),
-                  Icon(Icons.arrow_forward, size: 16),
-                ],
-              ),
+            child: Row(
+              children: [
+                // Bouncing location icon
+                AnimatedBuilder(
+                  animation: _bounceAnimation,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(0, _bounceAnimation.value),
+                      child: const Icon(
+                        Icons.location_on,
+                        color: Colors.green,
+                        size: 28,
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(width: 8),
+                const Text(
+                  'Current Location: Ashford, UK',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
           ),
         ),
